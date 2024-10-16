@@ -1,0 +1,459 @@
+@font-face {
+    font-family: "Donoun";
+    src: url("../Resources/Fonts/Donoun Medium.ttf")format("truetype");
+}
+
+@font-face {
+    font-family: "JejuDoldam";
+    src: url("../Resources/Fonts/EF_jejudoldam(윈도우용_TTF).ttf")format("truetype");
+}
+
+@font-face {
+    font-family: "EF_Diary";
+    src: url("../Resources/Fonts/EF_Diary.ttf")format("truetype");
+}
+@font-face {
+    font-family: "Buildingsandundertherailwaytracks";
+    src: url("../Resources/Fonts/Buildingsandundertherailwaytracks-Regular.otf")format("truetype");
+}
+@font-face {
+    font-family: "TsunagiGothic";
+    src: url("../Resources/Fonts/TsunagiGothic.ttf")format("truetype");
+}
+
+@keyframes logomotion {
+    0% {transform: rotate( 1deg );}
+    100% {transform: rotate( -1deg );}
+}
+
+@-webkit-keyframes logomotion {
+    0% {transform: rotate( 1deg );}
+    100% {transform: rotate( -1deg );}
+}
+
+@keyframes top10motion {
+    0% {transform: rotate( 4deg );}
+    100% {transform: rotate( -4deg );}
+}
+
+@-webkit-keyframes top10motion {
+    0% {margin-top: 0px;}
+    100% {margin-top: 10px;}
+}
+
+@keyframes clickmotion {
+    0% {transform: scale(1.15);}
+    100% {transform: scale(1);}
+}
+
+@-webkit-keyframes clickmotion {
+    0% {transform: scale(1.15);}
+    100% {transform: scale(1);}
+}
+
+/*클릭했을 때 테두리 생기는 것 방지*/
+*:focus {
+    outline: none;
+}
+.logo-div{
+    float: left;
+    margin-top: 6.5vw;
+    margin-left: 4vw;
+}
+.logo-inline-div{
+    animation: logomotion 0.7s linear 0s infinite alternate;
+    -webkit-animation: logomotion 0.7s linear 0s infinite alternate;
+}
+
+.logo-editorPick{
+    font-family: "Donoun";
+    font-size: 3vw;
+}
+
+.logo-korean{
+    line-height: 0.7;
+    display: inline;
+    font-family: "JejuDoldam";
+    font-size :10vw;
+}
+.logo-japanese{
+    line-height: 0.7;
+    display: inline;
+    font-family: "TsunagiGothic";
+    font-size :9vw;
+}
+
+.inputWrap {
+    display: flex;
+    border-radius: 8px;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 15px;
+    margin-top: 10px;
+    background-color: white;
+    border: 1px solid #e2e0e0;
+}
+.inputWrap:focus-within {
+    border: 1px solid rgb(100, 100, 100);
+}
+
+.input {
+    width: 100%;
+    outline: none;
+    border: none;
+    height: 20px;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.input::placeholder {
+    color: #dadada;
+}
+
+.errorMessageWrap {
+    margin-top: 8px;
+    margin-bottom: 20px;
+    color: #ef0000;
+    font-size: 12px;
+}
+
+.loginBtn, .signupBtn {
+    float: right;
+    margin-top: 2vh;
+    margin-right: 1.5vw;
+    font-family: "EF_Diary";
+    padding: 8px 22px;
+    background-color: #95cb8f;
+    color: #ffffff;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 1000;
+//width: 150px;
+    height: 40px;
+    text-align: center;
+    font-size: 16px;
+}
+.loginBtn{
+    width: 100px;
+}
+.signupBtn {
+    width: 130px;
+}
+
+.loginBtn:hover, .signupBtn:hover {
+    transition: 0.3s;
+    letter-spacing: 0px;
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.loginBtn:active, .signupBtn:active {
+    transform: scale(1.05);
+}
+
+.categorySection{
+    text-align: center;
+    width: 100vw;
+}
+.categoryImage {
+    margin-top: 20px;
+    width: 150px;
+    height: 150px;
+}
+.category {
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    border: 3px solid lightgray;
+    border-style: none;
+    border-radius: 30px;
+    background-color: white;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+    margin: 20px;
+}
+
+.category:hover {
+    transition: 0.3s;
+    letter-spacing: 0px;
+    transform: scale(1.15);
+    box-shadow: 7px 15px 20px rgb(150, 150, 150);
+    cursor: pointer;
+}
+.category:active {
+    transform: scale(1.25);
+}
+
+.carousel_div {
+    display: inline-block;
+    width: 150px;
+    text-align: center;
+    align-items: center;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.login-modal, .signup-modal {
+    background-image: url(../Resources/Images/background-image/modal-background.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    overflow:hidden;
+    background-color: white;
+    width: 400px;
+    height: 550px;
+    top: 10%;
+    bottom: 15%;
+    left: 10%;
+    right: 10%;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 40px;
+    margin: 0 auto;
+    border-radius: 20px;
+    transition: 5s;
+}
+.login-modal:active, .signup-modal:active {
+    transition: 5s;
+}
+.login-modal-logo, .signup-modal-logo {
+    float: center;
+    font-family: "JejuDoldam";
+    margin-bottom: 50px;
+}
+.login-txt, .signup-txt {
+    margin-top: 15px;
+    font-size:large;
+}
+.button-container {
+    display: flex;
+    flex-direction: column; /* 버튼들을 세로로 배치 */
+    align-items: center; /* 버튼들을 중앙에 정렬 */
+}
+.login-back-btn, .login-btn, .signup-back-btn, .signup-btn {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    width: 45%;
+    height: 45px;
+    border: none;
+    font-weight: bold;
+    border-radius: 45px;
+    background-color: #8bd485;
+    color: white;
+    font-size:large;
+    font-family: "EF_Diary";
+}
+.login-btn, .signup-btn {
+    margin-top: 20px;
+}
+
+.login-btn:hover, .signup-btn:hover, .login-back-btn:hover, .signup-back-btn:hover {
+    transition: 0.3s;
+    letter-spacing: 0px;
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.login-btn:active, .login-back-btn:active, .signup-btn:active, .signup-back-btn:active {
+    transform: scale(1.3);
+}
+
+.login-btn:disabled, .signup-btn:disabled {
+    background-color: #dadada;
+    color: white;
+    cursor: auto;
+    transition: none;
+    transform: none;
+}
+
+.main-text-container{
+    display: block;
+    margin-left: 29vw;
+    margin-right: 30vw;
+    margin-bottom: 3vw;
+}
+
+.main-text1, .main-text2, .main-text3, .main-text5{
+    display: block;
+    width: 30vw;
+    margin-left: 5vw;
+}
+
+.main-text4{
+    display: block;
+    width: 37vw;
+    margin-left: 2vw;
+}
+
+.main-text5{
+    margin-left: 7vw;
+    margin-bottom: 3vw;
+    animation: clickmotion 0.7s linear 0s infinite alternate;
+    -webkit-animation: clickmotion 0.7s linear 0s infinite alternate;
+}
+
+.top10-container{
+    margin-top: 10vw;
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+}
+
+
+.top10 {
+    width: 40vw;
+    animation: top10motion 0.7s linear 0s infinite alternate;
+    -webkit-animation: top10motion 0.7s linear 0s infinite alternate;
+}
+
+.foodTop10{
+    width: 16vw;
+    padding: 5vh;
+}
+
+.activityTop10{
+    margin-top: 3vw;
+    width: 27vw;
+    padding: 5vh;
+}
+
+.lodgingTop10{
+    margin-top: 3vw;
+    width: 17vw;
+    padding: 5vh;
+}
+
+.attractionTop10{
+    margin-top: 3vw;
+    width: 19vw;
+    padding: 5vh;
+}
+
+.carousel_div {
+    display: inline-block;
+    width: 150px;
+    text-align: center;
+    align-items: center;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding: 10px 2px 10px 2px;
+}
+.carousel_img {
+    width: 150px;
+    height: 150px;
+    border-radius: 20%;
+    border: 3px solid lightgray;
+    border-style: none;
+    box-shadow: 7px 15px 20px rgb(150, 150, 150);
+}
+.carousel_img:hover {
+    transition: 0.3s;
+    letter-spacing: 0px;
+    transform: scale(1.1);
+    box-shadow: 7px 15px 20px rgb(100, 100, 100);
+    cursor: pointer;
+}
+.carousel_name {
+    font-family: "Donoun";
+}
+
+.container {
+    background-color: rgba(0, 0, 0, 0.6);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9998; /* 모달 배경의 z-index도 높게 설정 */
+
+}
+
+.mainBottomBackground{
+    display: block;
+    width: 100vw;
+}
+
+/* ToggleSwitch.css */
+.toggle-container {
+    float: right;
+    margin-top: 2vh;
+    margin-right: 1vw;
+    cursor: pointer;
+}
+
+.toggle-track {
+    position: relative;
+    width: 120px;
+    height: 40px;
+    background-color: #3c4145; /* 비활성 상태일 때 배경 */
+    border-radius: 25px;
+    transition: background-color 0.3s, border-color 0.3s;
+    border: 1px solid #1c1c1c;
+    display: flex; /* 플렉스 박스로 변경 */
+    justify-content: space-between; /* 양쪽 끝에 배치 */
+    align-items: center; /* 중앙 정렬 */
+//padding: 0 10px; /* 텍스트와 thumb 사이에 공간 추가 */
+}
+
+.toggle-track.active {
+    background-color: #9ee3fb; /* 활성 상태일 때 배경 */
+    border-color: #86c3d7; /* 활성 상태일 때 테두리 */
+}
+
+.toggle-thumb {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: white;
+    transition: transform 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.thumb-active {
+    transform: translateX(80px); /* 활성 상태일 때 thumb 위치 */
+}
+
+.thumb-inactive {
+    transform: translateX(0); /* 비활성 상태일 때 thumb 위치 */
+}
+
+.flag-icon {
+    width: 100%;
+    height: 30px;
+    border-radius: 50%; /* 동그란 아이콘 */
+}
+.toggle-text {
+    position: absolute;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: opacity 0.3s ease;
+}
+
+.left-text {
+    left: 10px;
+}
+
+.right-text {
+    right: 10px;
+}
+
+/* 텍스트가 활성화/비활성화 될 때 변경 */
+.active-text {
+    opacity: 1;
+}
+
+.inactive-text {
+    opacity: 0;
+}
+
+.toggle-track.active .left-text {
+    color: black; /* 한국어일 때 검정색 */
+}
+
+.toggle-track.inactive .right-text {
+    color: white; /* 일본어일 때 흰색 */
+}
