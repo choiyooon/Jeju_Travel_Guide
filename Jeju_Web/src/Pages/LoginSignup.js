@@ -85,21 +85,25 @@ const LoginSignup = () => {
     }, [idValid, pwValid]);
 
     useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (token) {
+            setIsLoggedIn(true);
+        }
+    }, []);
+
+    useEffect(() => {
         if (!loginModalIsOpen) {
             setId("");
             setPw("");
             setIdValid(false);
             setPwValid(false);
         }
-    }, [loginModalIsOpen]);
-
-    useEffect(() => {
         if (!signupModalIsOpen) {
             setSignupId("");
             setSignupPw("");
             setSignupName("");
         }
-    }, [signupModalIsOpen]);
+    }, [loginModalIsOpen, signupModalIsOpen]);
 
     return (
         <>

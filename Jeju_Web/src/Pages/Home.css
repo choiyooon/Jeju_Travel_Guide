@@ -14,11 +14,15 @@
 }
 @font-face {
     font-family: "Buildingsandundertherailwaytracks";
-    src: url("../Resources/Fonts/Buildingsandundertherailwaytracks-Regular.otf")format("truetype");
+    src: url("../Resources/Fonts/jp/Buildingsandundertherailwaytracks-Regular.otf")format("truetype");
 }
 @font-face {
     font-family: "TsunagiGothic";
-    src: url("../Resources/Fonts/TsunagiGothic.ttf")format("truetype");
+    src: url("../Resources/Fonts/jp/TsunagiGothic.ttf")format("truetype");
+}
+@font-face {
+    font-family: "ZenMaruGothic";
+    src: url("../Resources/Fonts/jp/ZenMaruGothic-Medium.ttf")format("truetype");
 }
 
 @keyframes logomotion {
@@ -67,7 +71,12 @@
 
 .logo-editorPick{
     font-family: "Donoun";
-    font-size: 3vw;
+    font-size: 2vw;
+}
+.logo-sub-japanese{
+    font-family: "ZenMaruGothic";
+    font-size: 1.5vw;
+    padding-bottom: 10px;
 }
 
 .logo-korean{
@@ -80,7 +89,7 @@
     line-height: 0.7;
     display: inline;
     font-family: "TsunagiGothic";
-    font-size :9vw;
+    font-size :10vw;
 }
 
 .inputWrap {
@@ -292,6 +301,17 @@
     animation: clickmotion 0.7s linear 0s infinite alternate;
     -webkit-animation: clickmotion 0.7s linear 0s infinite alternate;
 }
+.main-text2-jp, .main-text3-jp{
+    display: block;
+    width: 35vw;
+    margin-left: 3vw;
+}
+
+.main-text4-jp{
+    display: block;
+    width: 38vw;
+    margin-left: 2vw;
+}
 
 .top10-container{
     margin-top: 10vw;
@@ -318,7 +338,7 @@
     padding: 5vh;
 }
 
-.lodgingTop10{
+.accomodationTop10{
     margin-top: 3vw;
     width: 17vw;
     padding: 5vh;
@@ -327,6 +347,28 @@
 .attractionTop10{
     margin-top: 3vw;
     width: 19vw;
+    padding: 5vh;
+}
+.foodTop10_jp{
+    width: 23vw;
+    padding: 5vh;
+}
+
+.activityTop10_jp{
+    margin-top: 3vw;
+    width: 50vw;
+    padding: 5vh;
+}
+
+.accomodationTop10_jp{
+    margin-top: 3vw;
+    width: 30vw;
+    padding: 5vh;
+}
+
+.attractionTop10_jp{
+    margin-top: 3vw;
+    width: 22vw;
     padding: 5vh;
 }
 
