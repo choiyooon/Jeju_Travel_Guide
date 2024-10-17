@@ -1,5 +1,7 @@
 import React, {useState, useEffect, useRef} from "react";
 //import Carousel from "react-material-ui-carousel";
+import LoginSignup from "./LoginSignup";
+import i18n from "./i18n";
 
 import food_category from "../Resources/Images/food.png"
 import activity_category from "../Resources/Images/activity.png"
@@ -17,7 +19,8 @@ import foodTop10 from "../Resources/Images/background-image/food-top10.png"
 import activityTop10 from "../Resources/Images/background-image/activity-top10.png"
 import accomodationTop10 from "../Resources/Images/background-image/accomodation-top10.png"
 import attractionTop10 from "../Resources/Images/background-image/attraction-top10.png"
-
+import koreaFlag from "../Resources/Images/korea_flag.png";  // 한국어 아이콘 이미지
+import japanFlag from "../Resources/Images/japan_flag.png";
 
 
 import "./Home.css";
@@ -31,13 +34,38 @@ const Home = ({onChange = f => f}) => {
 
 
 
-
+    const toggleLanguage = () => {
+        if (isKorean) {
+            i18n.changeLanguage("ja");
+        } else {
+            i18n.changeLanguage("ko");
+        }
+        setIsKorean(!isKorean); // 클릭 시 한국어/일본어 상태 변경
+    };
 
 
 
 
     return (
         <>
+            <LoginSignup />
+
+            <div className="toggle-container" onClick={toggleLanguage}>
+                <div className={`toggle-track ${isKorean ? "active" : "inactive"}`}>
+                    <div className={`toggle-thumb ${isKorean ? "thumb-active" : "thumb-inactive"}`}>
+                        <img
+                            src={isKorean ? koreaFlag : japanFlag}
+                            alt={isKorean ? "Korean" : "Japanese"}
+                            className="flag-icon"
+                        />
+                    </div>
+                    <span className={`toggle-text left-text ${isKorean ? "active-text" : "inactive-text"}`}>한국어</span>
+                    <span
+                        className={`toggle-text right-text ${isKorean ? "inactive-text" : "active-text"}`}>日本語</span>
+
+                </div>
+            </div>
+
             <div className="logo-div"><p className="logo-editorPick">에디터가 Pick한 진짜 제주도!</p>
                 <div className="logo-inline-div" style={{animation: modalIsOpen ? "none" : ""}}>
                     {isKorean ? (
