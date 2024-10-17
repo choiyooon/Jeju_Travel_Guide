@@ -1,6 +1,5 @@
 import React, {useState, useEffect, useRef} from "react";
 //import Carousel from "react-material-ui-carousel";
-import LoginSignup from "./LoginSignup";
 import i18n from "./i18n";
 
 import food_category from "../Resources/Images/food.png"
@@ -30,17 +29,16 @@ import accomodationTop10_jp from "../Resources/Images/background-image/accomodat
 import attractionTop10 from "../Resources/Images/background-image/attraction-top10.png"
 import attractionTop10_jp from "../Resources/Images/background-image/attraction-top10-jp.png"
 
-import koreaFlag from "../Resources/Images/korea_flag.png";  // 한국어 아이콘 이미지
-import japanFlag from "../Resources/Images/japan_flag.png";
+
 
 
 import "./Home.css";
+import Navbar from "./Navbar";
 
 
 const Home = ({onChange = f => f}) => {
     const [modalIsOpen, setModalIsOpen] = useState(false);  //로그인 창 팝업 여부
     const [isKorean, setIsKorean] = useState(true); // true면 한국어, false면 일본어
-
 
     const toggleLanguage = () => {
         if (isKorean) {
@@ -54,23 +52,8 @@ const Home = ({onChange = f => f}) => {
 
     return (
         <>
-            <LoginSignup/>
 
-            <div className="toggle-container" onClick={toggleLanguage}>
-                <div className={`toggle-track ${isKorean ? "active" : "inactive"}`}>
-                    <div className={`toggle-thumb ${isKorean ? "thumb-active" : "thumb-inactive"}`}>
-                        <img
-                            src={isKorean ? koreaFlag : japanFlag}
-                            alt={isKorean ? "Korean" : "Japanese"}
-                            className="flag-icon"
-                        />
-                    </div>
-                    <span className={`toggle-text left-text ${isKorean ? "active-text" : "inactive-text"}`}>한국어</span>
-                    <span
-                        className={`toggle-text right-text ${isKorean ? "inactive-text" : "active-text"}`}>日本語</span>
-
-                </div>
-            </div>
+            <Navbar isKorean={isKorean} toggleLanguage={toggleLanguage}/>
 
             <div className="logo-div">
                 {isKorean ? (
