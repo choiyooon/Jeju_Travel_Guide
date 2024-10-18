@@ -35,14 +35,16 @@ import attractionTop10_jp from "../Resources/Images/background-image/attraction-
 import "./Home.css";
 import Navbar from "./Navbar";
 import CarouselComponent from "../Components/CarouselComponent";
-import AccommodationData from '../Data/AccommodationData';
-
+import DataFetcher from '../Components/DataFetcher';
 
 const Home = ({onChange = f => f}) => {
     const [modalIsOpen, setModalIsOpen] = useState(false);  //로그인 창 팝업 여부
     const [isKorean, setIsKorean] = useState(true); // true면 한국어, false면 일본어
     const [accommodationsKo, setAccommodationsKo] = useState([]); // 한국어 숙소 데이터
     const [accommodationsJp, setAccommodationsJp] = useState([]); // 일본어 숙소 데이터
+    const [activitiesKo, setActivitiesKo] = useState([]); // 한국어 숙소 데이터
+    const [activitiesJp, setActivitiesJp] = useState([]); // 일본어 숙소 데이터
+
 
     const toggleLanguage = () => {
         if (isKorean) {
@@ -52,15 +54,16 @@ const Home = ({onChange = f => f}) => {
         }
         setIsKorean(!isKorean); // 클릭 시 한국어/일본어 상태 변경
     };
-    const handleAccommodationsLoaded = (data) => {
-        // 데이터를 분리하여 저장 (한국어와 일본어)
-        setAccommodationsKo(data.map(item => ({
+
+    // 한국어와 일본어 데이터를 분리하여 저장하는 함수
+    const handleDataLoaded = (data, setKo, setJp) => {
+        setKo(data.map(item => ({
             ...item,
             name: item.nameKo,
             keyword: item.keywordKo,
             explanation: item.explanationKo
         })));
-        setAccommodationsJp(data.map(item => ({
+        setJp(data.map(item => ({
             ...item,
             name: item.nameJp,
             keyword: item.keywordJp,
@@ -69,12 +72,23 @@ const Home = ({onChange = f => f}) => {
     };
 
     // 현재 언어에 따른 데이터를 반환
-    const getLocalizedAccommodations = () => {
-        return isKorean ? accommodationsKo : accommodationsJp;
+    const getLocalizedData = (isKorean, koData, jpData) => {
+        return isKorean ? koData : jpData;
     };
 
     return (
         <>
+            {/*숙소 데이터를 가져오기 위해 사용하는 부분*/}
+            <DataFetcher
+                onDataLoaded={(data) => handleDataLoaded(data, setAccommodationsKo, setAccommodationsJp)}
+                apiEndpoint="http://localhost:8080/api/accommodations"
+            />
+
+            {/*액티비티 데이터를 가져오기 위해 사용하는 부분*/}
+            <DataFetcher
+                onDataLoaded={(data) => handleDataLoaded(data, setActivitiesKo, setActivitiesJp)}
+                apiEndpoint="http://localhost:8080/api/activities"
+            />
 
             <Navbar isKorean={isKorean} toggleLanguage={toggleLanguage}/>
 
@@ -139,7 +153,9 @@ const Home = ({onChange = f => f}) => {
                 )}
             </div>
             <section>
-
+                {getLocalizedData(isKorean, activitiesKo, activitiesJp).length > 0 && (
+                    <CarouselComponent items={getLocalizedData(isKorean, activitiesKo, activitiesJp)} />
+                )}
             </section>
 
             <div>
@@ -150,9 +166,8 @@ const Home = ({onChange = f => f}) => {
                 )}
             </div>
             <section>
-                <AccommodationData onAccommodationsLoaded={handleAccommodationsLoaded} />
-                {getLocalizedAccommodations().length > 0 && (
-                    <CarouselComponent items={getLocalizedAccommodations()} />
+                {getLocalizedData(isKorean, accommodationsKo, accommodationsJp).length > 0 && (
+                    <CarouselComponent items={getLocalizedData(isKorean, accommodationsKo, accommodationsJp)} />
                 )}
             </section>
 

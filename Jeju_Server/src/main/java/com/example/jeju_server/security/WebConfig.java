@@ -23,7 +23,8 @@ public class WebConfig implements WebMvcConfigurer {
     private static final String[] PUBLIC_URLS = {
             "/api/auth/login",      // 로그인
             "/api/auth/signup",     // 회원가입
-            "/api/accommodations",       // React와 통신하는 API 경로
+            "/api/accommodations",
+            "/api/activities",
             "/images/**",           // 이미지 경로
             "/css/**",              // CSS 파일들
             "/js/**"                // JavaScript 파일들
