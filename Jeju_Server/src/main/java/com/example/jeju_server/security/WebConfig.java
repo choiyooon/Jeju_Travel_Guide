@@ -25,6 +25,7 @@ public class WebConfig implements WebMvcConfigurer {
             "/api/auth/signup",     // 회원가입
             "/api/accommodations",
             "/api/activities",
+            "/api/attractions",
             "/images/**",           // 이미지 경로
             "/css/**",              // CSS 파일들
             "/js/**"                // JavaScript 파일들

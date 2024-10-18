@@ -44,6 +44,8 @@ const Home = ({onChange = f => f}) => {
     const [accommodationsJp, setAccommodationsJp] = useState([]); // 일본어 숙소 데이터
     const [activitiesKo, setActivitiesKo] = useState([]); // 한국어 숙소 데이터
     const [activitiesJp, setActivitiesJp] = useState([]); // 일본어 숙소 데이터
+    const [attractionsKo, setAttractionsKo] = useState([]); // 일본어 숙소 데이터
+    const [attractionsJp, setAttractionsJp] = useState([]); // 일본어 숙소 데이터
 
 
     const toggleLanguage = () => {
@@ -88,6 +90,11 @@ const Home = ({onChange = f => f}) => {
             <DataFetcher
                 onDataLoaded={(data) => handleDataLoaded(data, setActivitiesKo, setActivitiesJp)}
                 apiEndpoint="http://localhost:8080/api/activities"
+            />
+            {/*명소 데이터를 가져오기 위해 사용하는 부분*/}
+            <DataFetcher
+                onDataLoaded={(data) => handleDataLoaded(data, setAttractionsKo, setAttractionsJp)}
+                apiEndpoint="http://localhost:8080/api/attractions"
             />
 
             <Navbar isKorean={isKorean} toggleLanguage={toggleLanguage}/>
@@ -179,7 +186,9 @@ const Home = ({onChange = f => f}) => {
                 )}
             </div>
             <section>
-
+                {getLocalizedData(isKorean, attractionsKo, attractionsJp).length > 0 && (
+                    <CarouselComponent items={getLocalizedData(isKorean, attractionsKo, attractionsJp)} />
+                )}
             </section>
             <img className="mainBottomBackground" src={mainBottomBackground}/>
         </>
