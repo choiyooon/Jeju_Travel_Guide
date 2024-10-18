@@ -14,7 +14,7 @@ const CarouselComponent = ({ items }) => {
                 <div key={index}>
                     <div className="carousel_container">
                         {chunk.map((item, i) => (
-                            <div key={i} className="carousel_div" onClick={() => window.open(item.kakao_map)}>
+                            <div key={i} className="carousel_div" onClick={() => window.open(item.kakaoMap)}>
                                 <img className="carousel_img" src={item.image} alt={item.name} />
                                 <h4 className="carousel_name">{item.name}</h4>
                             </div>
