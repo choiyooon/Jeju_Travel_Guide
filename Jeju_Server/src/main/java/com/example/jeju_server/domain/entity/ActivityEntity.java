@@ -18,9 +18,11 @@ import java.util.List;
 public class ActivityEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
-    private String name;
+    private String nameKo;
+    private String nameJp;
+
     private Double latitude;
     private Double longitude;
     private String address;
@@ -28,13 +30,18 @@ public class ActivityEntity {
     private String kakaoMap;
 
     @Convert(converter = StringListConverter.class)
-    @Column(columnDefinition = "TEXT") // JSON을 TEXT로 저장
-    private List<String> keyword;
+    @Column(name = "keyword_ko", columnDefinition = "TEXT")
+    private List<String> keywordKo;
+
+    @Convert(converter = StringListConverter.class)
+    @Column(name = "keyword_jp", columnDefinition = "TEXT")
+    private List<String> keywordJp;
 
     private int likes;
 
-    @Column(columnDefinition = "TEXT")
-    private String explanation;
+    @Column(name = "explanation_ko", columnDefinition = "TEXT")
+    private String explanationKo;
 
-    // Getters and Setters
+    @Column(name = "explanation_jp", columnDefinition = "TEXT")
+    private String explanationJp;
 }

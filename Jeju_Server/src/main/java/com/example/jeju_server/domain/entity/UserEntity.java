@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 public class UserEntity {
     @Id // 기본 키 매핑
     @GeneratedValue(strategy = GenerationType.IDENTITY) // 자동 증가 설정 (MySQL에서는 AUTO_INCREMENT)
-    private int id;
+    private Integer id;
 
     @Column(nullable = false, unique = true) // 이메일은 고유 값이며 null 허용 안 함
     private String email;

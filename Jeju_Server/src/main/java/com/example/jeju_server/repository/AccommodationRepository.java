@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface AccommodationRepository extends JpaRepository<AccommodationEntity, Long> {
+public interface AccommodationRepository extends JpaRepository<AccommodationEntity, Integer> {
     // 좋아요 수 기준으로 내림차순 정렬하여 가져오는 메서드
     List<AccommodationEntity> findAllByOrderByLikesDesc();
 }
