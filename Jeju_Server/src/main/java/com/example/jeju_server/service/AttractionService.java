@@ -1,6 +1,5 @@
 package com.example.jeju_server.service;
 
-import com.example.jeju_server.domain.dto.ActivityDTO;
 import com.example.jeju_server.domain.dto.AttractionDTO;
 import com.example.jeju_server.repository.AttractionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
