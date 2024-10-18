@@ -20,14 +20,14 @@ import mainBottomBackground from "../Resources/Images/background-image/main_bott
 import top10 from "../Resources/Images/background-image/top10-background.png"
 import top10_jp from "../Resources/Images/background-image/top10-background-jp.png"
 
-import foodTop10 from "../Resources/Images/background-image/food-top10.png"
-import foodTop10_jp from "../Resources/Images/background-image/food-top10-jp.png"
-import activityTop10 from "../Resources/Images/background-image/activity-top10.png"
-import activityTop10_jp from "../Resources/Images/background-image/activity-top10ーjp.png"
-import accomodationTop10 from "../Resources/Images/background-image/accomodation-top10.png"
-import accomodationTop10_jp from "../Resources/Images/background-image/accomodation-top10-jp.png"
-import attractionTop10 from "../Resources/Images/background-image/attraction-top10.png"
-import attractionTop10_jp from "../Resources/Images/background-image/attraction-top10-jp.png"
+import foodTop10 from "../Resources/Images/background-image/food.png"
+import foodTop10_jp from "../Resources/Images/background-image/food-jp.png"
+import activityTop10 from "../Resources/Images/background-image/activity.png"
+import activityTop10_jp from "../Resources/Images/background-image/activity-jp.png"
+import accomodationTop10 from "../Resources/Images/background-image/accomodation.png"
+import accomodationTop10_jp from "../Resources/Images/background-image/accomodation-jp.png"
+import attractionTop10 from "../Resources/Images/background-image/attraction.png"
+import attractionTop10_jp from "../Resources/Images/background-image/attraction-jp.png"
 
 
 
