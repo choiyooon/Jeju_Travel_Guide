@@ -41,7 +41,8 @@ import AccommodationData from '../Data/AccommodationData';
 const Home = ({onChange = f => f}) => {
     const [modalIsOpen, setModalIsOpen] = useState(false);  //로그인 창 팝업 여부
     const [isKorean, setIsKorean] = useState(true); // true면 한국어, false면 일본어
-    const [accommodations, setAccommodations] = useState([]); // 숙소 데이터를 저장할 상태 변수
+    const [accommodationsKo, setAccommodationsKo] = useState([]); // 한국어 숙소 데이터
+    const [accommodationsJp, setAccommodationsJp] = useState([]); // 일본어 숙소 데이터
 
     const toggleLanguage = () => {
         if (isKorean) {
@@ -52,9 +53,24 @@ const Home = ({onChange = f => f}) => {
         setIsKorean(!isKorean); // 클릭 시 한국어/일본어 상태 변경
     };
     const handleAccommodationsLoaded = (data) => {
-        console.log("Loaded accommodations:", data); // 데이터를 콘솔에 출력
+        // 데이터를 분리하여 저장 (한국어와 일본어)
+        setAccommodationsKo(data.map(item => ({
+            ...item,
+            name: item.nameKo,
+            keyword: item.keywordKo,
+            explanation: item.explanationKo
+        })));
+        setAccommodationsJp(data.map(item => ({
+            ...item,
+            name: item.nameJp,
+            keyword: item.keywordJp,
+            explanation: item.explanationJp
+        })));
+    };
 
-        setAccommodations(data); // 데이터를 상태에 저장
+    // 현재 언어에 따른 데이터를 반환
+    const getLocalizedAccommodations = () => {
+        return isKorean ? accommodationsKo : accommodationsJp;
     };
 
     return (
@@ -112,10 +128,7 @@ const Home = ({onChange = f => f}) => {
                 )}
             </div>
             <section>
-                <AccommodationData onAccommodationsLoaded={handleAccommodationsLoaded} />
-                {accommodations.length > 0 && (
-                    <CarouselComponent items={accommodations} />
-                )}
+
             </section>
 
             <div>
@@ -137,7 +150,10 @@ const Home = ({onChange = f => f}) => {
                 )}
             </div>
             <section>
-
+                <AccommodationData onAccommodationsLoaded={handleAccommodationsLoaded} />
+                {getLocalizedAccommodations().length > 0 && (
+                    <CarouselComponent items={getLocalizedAccommodations()} />
+                )}
             </section>
 
             <div>
