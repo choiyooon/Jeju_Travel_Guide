@@ -34,6 +34,7 @@ import attractionTop10_jp from "../Resources/Images/background-image/attraction-
 
 import "./Home.css";
 import Navbar from "./Navbar";
+import CarouselComponent from "../Components/CarouselComponent";
 
 
 const Home = ({onChange = f => f}) => {
@@ -105,7 +106,7 @@ const Home = ({onChange = f => f}) => {
                 )}
             </div>
             <section>
-
+                <CarouselComponent />
             </section>
 
             <div>
