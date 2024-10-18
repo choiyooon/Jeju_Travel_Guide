@@ -1,4 +1,10 @@
 package com.example.jeju_server.repository;
 
-public interface ActivityRepository {
+import com.example.jeju_server.domain.entity.ActivityEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface ActivityRepository extends JpaRepository<ActivityEntity, Long> {
+
 }

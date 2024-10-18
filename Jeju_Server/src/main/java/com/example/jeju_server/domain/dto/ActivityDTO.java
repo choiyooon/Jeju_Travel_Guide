@@ -11,7 +11,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AttractionDTO {
+public class ActivityDTO {
     private Long id;
     private String name;
     private Double latitude;
@@ -23,5 +23,4 @@ public class AttractionDTO {
     private int likes;
     private String explanation;
 
-    // Getters and Setters
 }
