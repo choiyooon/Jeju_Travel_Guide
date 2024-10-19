@@ -30,12 +30,11 @@ import attractionTop10 from "../Resources/Images/background-image/attraction.png
 import attractionTop10_jp from "../Resources/Images/background-image/attraction-jp.png"
 
 
-
-
 import "./Home.css";
 import Navbar from "../Components/Navbar";
 import CarouselComponent from "../Components/CarouselComponent";
 import DataFetcher from '../Components/DataFetcher';
+import Category from "../Components/Category";
 
 const Home = ({onChange = f => f}) => {
     const [modalIsOpen, setModalIsOpen] = useState(false);  //로그인 창 팝업 여부
@@ -138,7 +137,10 @@ const Home = ({onChange = f => f}) => {
                 <img className="main-text5" style={{animation: modalIsOpen ? "none" : ""}} src={maintext5}/>
             </div>
             <div className="categorySection" style={{marginTop: "50px", marginBottom: "100px"}}>
-
+                <Category name="food" src={food_category} onChangePage={onChange}/>
+                <Category name="activity" src={activity_category} onChangePage={onChange}/>
+                <Category name="accomodation" src={accomodation_category} onChangePage={onChange}/>
+                <Category name="attraction" src={attraction_category} onChangePage={onChange}/>
             </div>
             <div className="top10-container">
                 {isKorean ? (
@@ -157,7 +159,7 @@ const Home = ({onChange = f => f}) => {
             </div>
             <section>
                 {getLocalizedData(isKorean, restaurantKo, restaurantJp).length > 0 && (
-                    <CarouselComponent items={getLocalizedData(isKorean, restaurantKo, restaurantJp)} />
+                    <CarouselComponent items={getLocalizedData(isKorean, restaurantKo, restaurantJp)}/>
                 )}
             </section>
 
@@ -170,7 +172,7 @@ const Home = ({onChange = f => f}) => {
             </div>
             <section>
                 {getLocalizedData(isKorean, activitiesKo, activitiesJp).length > 0 && (
-                    <CarouselComponent items={getLocalizedData(isKorean, activitiesKo, activitiesJp)} />
+                    <CarouselComponent items={getLocalizedData(isKorean, activitiesKo, activitiesJp)}/>
                 )}
             </section>
 
@@ -183,7 +185,7 @@ const Home = ({onChange = f => f}) => {
             </div>
             <section>
                 {getLocalizedData(isKorean, accommodationsKo, accommodationsJp).length > 0 && (
-                    <CarouselComponent items={getLocalizedData(isKorean, accommodationsKo, accommodationsJp)} />
+                    <CarouselComponent items={getLocalizedData(isKorean, accommodationsKo, accommodationsJp)}/>
                 )}
             </section>
 
@@ -196,7 +198,7 @@ const Home = ({onChange = f => f}) => {
             </div>
             <section>
                 {getLocalizedData(isKorean, attractionsKo, attractionsJp).length > 0 && (
-                    <CarouselComponent items={getLocalizedData(isKorean, attractionsKo, attractionsJp)} />
+                    <CarouselComponent items={getLocalizedData(isKorean, attractionsKo, attractionsJp)}/>
                 )}
             </section>
             <img className="mainBottomBackground" src={mainBottomBackground}/>

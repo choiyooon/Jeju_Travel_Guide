@@ -213,3 +213,4 @@ const Navbar = ({isKorean, toggleLanguage}) => {
 };
 
 export default Navbar;
+
