@@ -19,7 +19,14 @@ const resources = {
             invalidPassword: "영문, 숫자, 특수문자 포함 8자 이상 입력해주세요.",
             logout: "로그아웃",
             confirm: "확인",
-            loggedOut:  "로그아웃되었습니다"
+            loggedOut:  "로그아웃되었습니다",
+            clear: "맑음",
+            partlyCloudy: "구름 적음",
+            mostlyCloudy: "구름 많음",
+            overcast: "흐림",
+            rain: "비",
+            sleet: "비/눈",
+            snow: "눈"
         }
     },
     ja: {
@@ -38,7 +45,14 @@ const resources = {
             invalidPassword: "英字、数字、記号を含む8文字以上で入力してください。",
             logout: "ログアウト",
             confirm: "確認",
-            loggedOut: "ログアウトしました"
+            loggedOut: "ログアウトしました",
+            clear: "晴れ",
+            partlyCloudy: "少し曇り",
+            mostlyCloudy: "曇り",
+            overcast: "曇天",
+            rain: "雨",
+            sleet: "みぞれ",
+            snow: "雪"
         }
     }
 };

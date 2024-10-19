@@ -150,7 +150,7 @@ const Navbar = ({isKorean, toggleLanguage}) => {
 
                 {/* 날씨 컴포넌트 추가 */}
                 <div className="weather-container">
-                    <Weather />
+                    <Weather currentLanguage={isKorean ? 'ko' : 'ja'} />
                 </div>
                 {/* 로그인 모달 */}
                 <div className="container" style={{display: loginModalIsOpen ? "block" : "none"}}>

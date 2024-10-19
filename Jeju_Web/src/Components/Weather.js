@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import './Weather.css'; // Meteocons 스타일 추가
+import { useTranslation } from 'react-i18next';
 
 import clearDayIcon from '../Resources/Svgs/clear-day.svg';
 import clearNightIcon from '../Resources/Svgs/clear-night.svg';
@@ -30,7 +31,13 @@ import sleetIcon from '../Resources/Svgs/sleet.svg';
 import rainIcon from '../Resources/Svgs/rain.svg';
 import snowIcon from '../Resources/Svgs/snow.svg';
 
-const Weather = () => {
+const Weather = ({ currentLanguage }) => {
+    const { t, i18n } = useTranslation();
+
+    useEffect(() => {
+        i18n.changeLanguage(currentLanguage); // 전달받은 언어로 i18n 언어 변경
+    }, [currentLanguage]);
+
     const [weatherData, setWeatherData] = useState(null);
     const [windData, setWindData] = useState(null);
     const [tempData, setTempData] = useState(null); // 기온 데이터 저장
@@ -132,48 +139,51 @@ const Weather = () => {
                     <div className="weather-item">
                         <img src={getWeatherIcon(weatherData.fcstValue, precipitationData.fcstValue)}
                              alt="Weather Condition"/>
+                        <span className="colon">:</span>
                         <span>
-        {(() => {
-            if (precipitationData.fcstValue === '1') {
-                return '비';
-            } else if (precipitationData.fcstValue === '2') {
-                return '비/눈';
-            } else if (precipitationData.fcstValue === '3') {
-                return '눈';
-            } else {
-                // 강수 형태가 없으면 하늘 상태에 따른 텍스트 출력
-                switch (weatherData.fcstValue) {
-                    case '1':
-                        return '맑음';
-                    case '2':
-                        return '구름 적음';
-                    case '3':
-                        return '구름 많음';
-                    case '4':
-                        return '흐림';
-                    default:
-                        return '';
-                }
-            }
-        })()}
-    </span>
+                            {(() => {
+                                if (precipitationData.fcstValue === '1') {
+                                    return t('rain');
+                                } else if (precipitationData.fcstValue === '2') {
+                                    return t('sleet');
+                                } else if (precipitationData.fcstValue === '3') {
+                                    return t('snow');
+                                } else {
+                                    switch (weatherData.fcstValue) {
+                                        case '1':
+                                            return t('clear');
+                                        case '2':
+                                            return t('partlyCloudy');
+                                        case '3':
+                                            return t('mostlyCloudy');
+                                        case '4':
+                                            return t('overcast');
+                                        default:
+                                            return '';
+                                    }
+                                }
+                            })()}
+                        </span>
                     </div>
 
                     {/* 풍속 아이콘 */}
                     <div className="weather-item">
                         <img src={getWindIcon(windData.fcstValue)} alt="Wind Condition"/>
+                        <span className="colon">:</span>
                         <span>{windData.fcstValue} m/s</span> {/* 풍속 */}
                     </div>
 
                     {/* 기온 아이콘 */}
                     <div className="weather-item">
                         <img src={thermometerIcon} alt="Temperature"/>
+                        <span className="colon">:</span>
                         <span>{tempData.fcstValue}°C</span> {/* 현재 기온 */}
                     </div>
 
                     {/* 강수 확률 아이콘 */}
                     <div className="weather-item">
                         <img src={humidityIcon} alt="Precipitation Probability"/>
+                        <span className="colon">:</span>
                         <span>{popData.fcstValue}%</span> {/* 강수 확률 */}
                     </div>
                 </div>

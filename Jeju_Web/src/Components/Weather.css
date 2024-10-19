@@ -17,7 +17,7 @@
 
 /* 마우스 오버 시 컨테이너 너비 증가 */
 .weather-container:hover {
-    width: 10vw; /* 글자까지 포함한 넉넉한 너비 */
+    width: 12vw; /* 글자까지 포함한 넉넉한 너비 */
 }
 
 /* 날씨 아이템 기본 상태 */
@@ -37,7 +37,8 @@
 
 /* 텍스트 기본적으로 숨김 */
 .weather-item span {
-    font-size: 14px;
+    margin-top: 0.3vw;
+    font-size: 24px;
     font-weight: bold;
     opacity: 0; /* 숨김 */
     transition: opacity 0.5s ease; /* 마우스 오버 시 서서히 나타나도록 설정 */
@@ -49,6 +50,7 @@
 }
 
 .weather-item .colon {
+    font-size: 20px;
     margin: 0 5px;
     font-weight: bold;
     opacity: 0; /* 콜론도 텍스트와 함께 숨김 */
@@ -59,3 +61,4 @@
 .weather-container:hover .weather-item .colon {
     opacity: 1;
 }
+
