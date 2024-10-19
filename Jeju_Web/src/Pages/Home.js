@@ -33,7 +33,7 @@ import attractionTop10_jp from "../Resources/Images/background-image/attraction-
 
 
 import "./Home.css";
-import Navbar from "./Navbar";
+import Navbar from "../Components/Navbar";
 import CarouselComponent from "../Components/CarouselComponent";
 import DataFetcher from '../Components/DataFetcher';
 
