@@ -6,6 +6,7 @@ import koreaFlag from "../Resources/Images/korea_flag.png";
 import japanFlag from "../Resources/Images/japan_flag.png";
 import mainLogo from "../Resources/Images/main-logo.png"; // 로고 이미지 추가
 
+import Weather from "./Weather";
 import "./Navbar.css";
 
 const Navbar = ({isKorean, toggleLanguage}) => {
@@ -122,13 +123,7 @@ const Navbar = ({isKorean, toggleLanguage}) => {
     return (
         <>
             <div className="fixed-navbar">
-
-                <button className="loginBtn" onClick={loginBtn}>
-                    {isLoggedIn ? t("logout") : t("login")}
-                </button>
-                {!isLoggedIn && (
-                    <button className="signupBtn" onClick={() => setSignupModalIsOpen(true)}>{t("signup")}</button>
-                )}
+                {/*국제화 토글*/}
                 <div className="toggle-container" onClick={toggleLanguage}>
                     <div className={`toggle-track ${isKorean ? "active" : "inactive"}`}>
                         <div className={`toggle-thumb ${isKorean ? "thumb-active" : "thumb-inactive"}`}>
@@ -144,7 +139,19 @@ const Navbar = ({isKorean, toggleLanguage}) => {
                             className={`toggle-text right-text ${isKorean ? "inactive-text" : "active-text"}`}>日本語</span>
                     </div>
                 </div>
+                {/*로그인 버튼*/}
+                <button className="loginBtn" onClick={loginBtn}>
+                    {isLoggedIn ? t("logout") : t("login")}
+                </button>
+                {/*회원가입 버튼*/}
+                {!isLoggedIn && (
+                    <button className="signupBtn" onClick={() => setSignupModalIsOpen(true)}>{t("signup")}</button>
+                )}
 
+                {/* 날씨 컴포넌트 추가 */}
+                <div className="weather-container">
+                    <Weather />
+                </div>
                 {/* 로그인 모달 */}
                 <div className="container" style={{display: loginModalIsOpen ? "block" : "none"}}>
                     <div className="login-modal">
