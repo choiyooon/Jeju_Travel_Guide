@@ -57,11 +57,13 @@ const Navbar = ({isKorean, toggleLanguage}) => {
                 email: id,
                 password: pw
             });
-
-            Swal.fire({icon: "success", text: t("loginSuccess"), confirmButtonText: t("confirm")});
-            localStorage.setItem("token", response.data.token);
+            // 이전 토큰이 있다면 먼저 삭제
+            localStorage.removeItem('token');
+            localStorage.setItem("token", response.data);
             setIsLoggedIn(true); // 로그인 성공 시 상태 업데이트
             setLoginModalIsOpen(false);
+            Swal.fire({icon: "success", text: t("loginSuccess"), confirmButtonText: t("confirm")});
+
         } catch (error) {
             Swal.fire({
                 icon: "error",

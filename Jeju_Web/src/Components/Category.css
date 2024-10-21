@@ -1,3 +1,53 @@
+
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* 가장 높은 z-index 값 */
+
+}
+
+
+
+.modal-content {
+    background: white; /* 기본 흰색 배경 */
+    background-image: url('../Resources/Images/background-image/main_body_background.png'); /* 이미지 배경 추가 */
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover; /* 이미지가 화면을 덮도록 설정 */
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    z-index: 10000;
+    width: 85%; /* 화면 너비의 85%로 설정 */
+    height: 80%;
+}
+
+/* 닫기 버튼 스타일링 */
+.modal-close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    color: gray;
+    outline: none;
+}
+
+.modal-close-btn:hover {
+    color: black; /* 호버 시 빨간색 */
+}
+
+
 @font-face {
     font-family: "Donoun";
     src: url("../Resources/Fonts/Donoun Medium.ttf")format("truetype");
@@ -7,19 +57,8 @@
     font-family: "EF_Diary";
     src: url("../Resources/Fonts/EF_Diary.ttf")format("truetype");
 }
-header{
-    background-color: rgba(255, 255, 255, 0.9);
-}
-#logo {
-    width: 150px; /* 원하는 너비 */
-    height: auto; /* 높이는 자동으로 설정되어 비율이 유지됩니다 */
-    cursor: pointer; /* 클릭 가능하게 포인터 모양 설정 */
-    transition: transform 0.3s ease; /* 마우스를 올릴 때 애니메이션 추가 */
-}
-#logo:hover{
-    cursor: pointer;
-    transform: scale(1.1); /* 마우스를 올렸을 때 이미지 확대 */
-}
+
+
 #search {
     text-align: center;
     margin-top: 70px;
@@ -37,7 +76,7 @@ select::-ms-expand {
     appearance: none;
     background: url('../Resources/Images/background-image/selectIcon.jpeg') no-repeat 97% 50%;
     display: inline-block;
-    width: 120px;
+    width: 160px;
     height: 40px;
     padding: 10px 20px 10px 13px;
     font-size:15px;

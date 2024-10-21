@@ -127,9 +127,12 @@
     font-size: 12px;
 }
 
-.categorySection{
-    text-align: center;
-    width: 100vw;
+.categorySection {
+    display: flex;
+    justify-content: center; /* 가로로 중앙 정렬 */
+    flex-wrap: wrap; /* 필요할 경우 다음 줄로 넘어가도록 설정 */
+    gap: 20px; /* 카테고리 사이의 간격 설정 */
+    width: 100%; /* 부모 요소가 가로로 꽉 차도록 설정 */
 }
 .categoryImage {
     margin-top: 20px;

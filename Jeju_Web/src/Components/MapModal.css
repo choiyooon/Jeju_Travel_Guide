@@ -1,0 +1,73 @@
+#result-list {
+    width: 60%;
+    height: 500px;
+    overflow: auto;
+    margin-left: 20px;
+}
+
+#addResultListBtn{
+    width: 60px;
+    height: 30px;
+    background-color: white;
+    display: inline-block;
+    font-family: "EF_Diary";
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+#pagination {
+    margin-top: 3rem;
+}
+
+#pagination a {
+    color: black;
+    font-size: 20px;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+#pagination a.on {
+    color: lightblue;
+    font-weight: bold;
+}
+#placeCard{
+    background-color: aliceblue;
+    padding : 10px 10px 20px 10px;
+    margin-right: 20px;
+    margin-left: 20px;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+#addResultListBtn :hover{
+    background-color: #aee5b7;
+}
+
+
+.mapListDiv{
+    background-image: url('../Resources/Images/background-image/mapDiv-background.png');
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    border-style: none;
+    background-color: white;
+    box-shadow: 0px 15px 20px 15px rgba(0, 0, 0, 0.2);
+    margin-top: 60px;
+    border-radius: 20px;
+
+}
+
+.addPlaceMapDiv{
+    border-radius: 20px;
+    background-color: white;
+    box-shadow: 0px 15px 20px 15px rgba(0, 0, 0, 0.2);
+
+    margin-top: 40px;
+    margin-right: 40px;
+    margin-left: 40px;
+    padding: 30px 15px 30px 15px;
+}
+

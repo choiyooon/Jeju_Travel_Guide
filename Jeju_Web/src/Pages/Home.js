@@ -50,13 +50,37 @@ const Home = ({onChange = f => f}) => {
 
 
     const toggleLanguage = () => {
-        if (isKorean) {
-            i18n.changeLanguage("ja");
-        } else {
-            i18n.changeLanguage("ko");
-        }
-        setIsKorean(!isKorean); // 클릭 시 한국어/일본어 상태 변경
+        i18n.changeLanguage(isKorean ? "ja" : "ko");
+        setIsKorean(!isKorean);
     };
+
+    // 한국어와 일본어 데이터를 합치는 함수
+    const categories = [
+        {
+            name: 'food',
+            src: food_category,
+            koData: restaurantKo,
+            jpData: restaurantJp,
+        },
+        {
+            name: 'activity',
+            src: activity_category,
+            koData: activitiesKo,
+            jpData: activitiesJp,
+        },
+        {
+            name: 'accomodation',
+            src: accomodation_category,
+            koData: accommodationsKo,
+            jpData: accommodationsJp,
+        },
+        {
+            name: 'attraction',
+            src: attraction_category,
+            koData: attractionsKo,
+            jpData: attractionsJp,
+        },
+    ];
 
     // 한국어와 일본어 데이터를 분리하여 저장하는 함수
     const handleDataLoaded = (data, setKo, setJp) => {
@@ -137,10 +161,9 @@ const Home = ({onChange = f => f}) => {
                 <img className="main-text5" style={{animation: modalIsOpen ? "none" : ""}} src={maintext5}/>
             </div>
             <div className="categorySection" style={{marginTop: "50px", marginBottom: "100px"}}>
-                <Category name="food" src={food_category} onChangePage={onChange}/>
-                <Category name="activity" src={activity_category} onChangePage={onChange}/>
-                <Category name="accomodation" src={accomodation_category} onChangePage={onChange}/>
-                <Category name="attraction" src={attraction_category} onChangePage={onChange}/>
+                <Category categories={categories} isKorean={isKorean} />
+
+
             </div>
             <div className="top10-container">
                 {isKorean ? (

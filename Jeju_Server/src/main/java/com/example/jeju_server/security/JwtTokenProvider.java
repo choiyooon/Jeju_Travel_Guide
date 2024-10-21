@@ -22,13 +22,12 @@ public class JwtTokenProvider {
     @Value("${jwt.token-validity-in-seconds}")
     private long tokenValidityInSeconds;
 
-    // 토큰 유효시간 설정 (예: 1시간)
-    private final long tokenValidityMilliseconds = tokenValidityInSeconds * 1000; // 초를 밀리초로 변환
+    private long tokenValidityMilliseconds; // 동적으로 설정하기 위해 필드를 분리
 
-    // secretKey를 Base64로 인코딩
     @PostConstruct
     protected void init() {
         secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
+        tokenValidityMilliseconds = tokenValidityInSeconds * 1000; // 초를 밀리초로 변환
     }
 
     // JWT 토큰 생성

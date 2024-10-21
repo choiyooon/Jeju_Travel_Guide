@@ -26,7 +26,13 @@ const resources = {
             overcast: "흐림",
             rain: "비",
             sleet: "비/눈",
-            snow: "눈"
+            snow: "눈",
+            activity: "액티비티 🪂",
+            food: "맛집 🍚",
+            lodging: "숙소 🏠",
+            attraction: "명소 🏔️",
+            initialize: "초기화",
+            showAll: "모두 보기"
         }
     },
     ja: {
@@ -52,7 +58,13 @@ const resources = {
             overcast: "曇天",
             rain: "雨",
             sleet: "みぞれ",
-            snow: "雪"
+            snow: "雪",
+            activity: "アクティビティ 🪂",
+            food: "レストラン 🍚",
+            lodging: "宿泊 🏠",
+            attraction: "観光地 🏔️",
+            initialize: "初期化",
+            showAll: "全て見る"
         }
     }
 };
