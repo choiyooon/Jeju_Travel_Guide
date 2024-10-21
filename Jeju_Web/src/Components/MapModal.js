@@ -66,7 +66,7 @@ const MapModal = ({ categories, isKorean, selectedCategory }) => {
     // 초기화 버튼
     const handleReset = (e) => {
         e.preventDefault();
-        setPlace("");
+        setPlace([]);
         setInputText("");
     };
     // 모두보기 버튼
