@@ -75,10 +75,24 @@ CREATE TABLE accommodation (
                                explanation_jp TEXT                    -- 일본어 설명
 );
 
+-- 좋아요 테이블
+CREATE TABLE likes (
+                       id INT PRIMARY KEY AUTO_INCREMENT,
+                       user_id INT NOT NULL,                       -- 사용자 ID (외래키)
+                       place_id INT NOT NULL,                      -- 장소 ID (외래키)
+                       place_type ENUM('ACTIVITY', 'ATTRACTION', 'RESTAURANT', 'ACCOMMODATION') NOT NULL, -- 장소 구분
+                       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- 좋아요가 눌린 시간
+                       updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, -- 마지막 업데이트일
+                       is_active BOOLEAN DEFAULT TRUE,              -- 좋아요 활성화 상태 (기본값: 활성화)
+                       UNIQUE(user_id, place_id, place_type),      -- 사용자와 장소, 장소 유형으로 중복 방지
+                       FOREIGN KEY (user_id) REFERENCES user(id)   -- users 테이블과의 외래키 관계
+);
+
 drop table activity;
 drop table attraction;
 drop table restaurant;
 drop table accommodation;
+drop table likes;
 
 INSERT INTO activity (name_ko, name_jp, latitude, longitude, address, image, kakao_map, keyword_ko, keyword_jp, likes, explanation_ko, explanation_jp) VALUES
                                                                                                                                                            ('9.81파크', '9.81パーク', 33.48524674045696, 126.4813953072775, '제주특별자치도 제주시 애월읍 천덕로 880-24 (우)63038', './images/activity/9.81파크.png', 'https://place.map.kakao.com/1868828759', JSON_ARRAY('카트', '테마파크'), JSON_ARRAY('カート', 'テーマパーク'), 18, '트랜디한 공간을 누비며 안에서 놀자!', 'トレンディな空間を走り回りながら楽しもう！'),

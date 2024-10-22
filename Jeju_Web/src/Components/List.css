@@ -1,0 +1,86 @@
+.List-Container {
+    text-align: center;
+    display: inline-block;
+    /*
+    background-image: url("../../Resources/Images/background-image/item-list-background.png");
+    background-size: cover;
+    background-position: center;
+    */
+    width: 30vw;
+    height: 560px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    margin-right: 20px;
+    margin-left: 50px;
+
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+}
+
+.List-Container::-webkit-scrollbar {
+    display: none;
+}
+
+
+.List-Item {
+    text-align: justify;
+
+    white-space: pre;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    background-color: white;
+
+    border-radius: 20px;
+    box-shadow: 5px 6px 5px 3px darkgrey;
+
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 10px;
+
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.List-Item:hover {
+    cursor: pointer;
+    box-shadow: 5px 5px 3px 3px gray;
+    white-space: pre-wrap;
+}
+
+.List-Item-Image {
+    width: 60%;
+    padding-top: 20px;
+}
+
+.List-Item-Image-div {
+    background-color: white;
+    width: 95%;
+    margin: 0 auto;
+    padding-top: 5px;
+    padding-bottom: 20px;
+    border-radius: 20px;
+
+}
+
+.List-like {
+    font-family: "restaurantListLikeFont";
+}
+
+.add-List-container {
+    background-color: crimson;
+    position: absolute;
+    overflow:hidden;
+    width: 800px;
+    height: 500px;
+    top: 15%;
+    bottom: 15%;
+    left: 10%;
+    right: 10%;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+.arrow_image{
+    cursor: pointer;
+}

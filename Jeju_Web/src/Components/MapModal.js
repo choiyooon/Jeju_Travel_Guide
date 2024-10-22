@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Map from "../Components/Map";
-//import List from "../Components/List/List";
+import List from "../Components/List";
 import searchIcon from "../Resources/Images/background-image/searchIcon.png";
 import Swal from "sweetalert2"; // 알림창 모듈
 import { useTranslation } from 'react-i18next';
@@ -82,8 +82,8 @@ const MapModal = ({ categories, isKorean, selectedCategory }) => {
                 <div className="searchDiv">
                     <select onChange={changeCategory} id="categorySelect" value={selected} >
                         <option value="activity">{t('activity')}</option>
-                        <option value="food">{t('food')}</option>
-                        <option value="accomodation">{t('lodging')}</option>
+                        <option value="restaurant">{t('restaurant')}</option>
+                        <option value="accommodation">{t('accommodation')}</option>
                         <option value="attraction">{t('attraction')}</option>
                     </select>
                     <div className="searchInputDiv">
@@ -101,14 +101,14 @@ const MapModal = ({ categories, isKorean, selectedCategory }) => {
                         <button id ="showAllBtn" onClick={handleShowAll}>{t('showAll')}</button>
 
                         <Link to="/sub/addplace">
-                            <button id="addBtn" type="add" disabled={(localStorage.getItem("loginFlag") === "ON") ? false : true} style={{ display: (localStorage.getItem("loginFlag") === "ON") ? "" : "none" }}
+                            <button id="addBtn" type="add" disabled={(sessionStorage.getItem("loginFlag") === "ON") ? false : true} style={{ display: (localStorage.getItem("loginFlag") === "ON") ? "" : "none" }}
                             >추가</button></Link>
                     </div>
                 </div>
             </form>
             <div className="mapListDiv">
                 <Map searchPlaces={place} />
-                {/*<List places={category} setPlace={setPlace} />*/}
+                <List places={category} setPlace={setPlace} placeType={selected} />
             </div>
         </>
     );

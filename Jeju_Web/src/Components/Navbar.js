@@ -43,7 +43,7 @@ const Navbar = ({isKorean, toggleLanguage}) => {
 
     const loginBtn = () => {
         if (isLoggedIn) {
-            localStorage.removeItem("token");
+            sessionStorage.removeItem("token");
             setIsLoggedIn(false);
             Swal.fire({icon: "info", text: t("loggedOut"), confirmButtonText: t("confirm")});
         } else {
@@ -58,8 +58,8 @@ const Navbar = ({isKorean, toggleLanguage}) => {
                 password: pw
             });
             // 이전 토큰이 있다면 먼저 삭제
-            localStorage.removeItem('token');
-            localStorage.setItem("token", response.data);
+            sessionStorage.removeItem('token');
+            sessionStorage.setItem("token", response.data);
             setIsLoggedIn(true); // 로그인 성공 시 상태 업데이트
             setLoginModalIsOpen(false);
             Swal.fire({icon: "success", text: t("loginSuccess"), confirmButtonText: t("confirm")});
@@ -102,7 +102,7 @@ const Navbar = ({isKorean, toggleLanguage}) => {
     }, [idValid, pwValid]);
 
     useEffect(() => {
-        const token = localStorage.getItem("token");
+        const token = sessionStorage.getItem("token");
         if (token) {
             setIsLoggedIn(true);
         }

@@ -2,9 +2,9 @@ import React, {useState, useEffect, useRef} from "react";
 //import Carousel from "react-material-ui-carousel";
 import i18n from "./i18n";
 
-import food_category from "../Resources/Images/food.png"
+import restaurant_category from "../Resources/Images/restaurant.png"
 import activity_category from "../Resources/Images/activity.png"
-import accomodation_category from "../Resources/Images/accomodation.png"
+import accommodation_category from "../Resources/Images/accommodation.png"
 import attraction_category from "../Resources/Images/attraction.png"
 
 import maintext1 from "../Resources/Images/background-image/main-text1.png"
@@ -20,12 +20,12 @@ import mainBottomBackground from "../Resources/Images/background-image/main_bott
 import top10 from "../Resources/Images/background-image/top10-background.png"
 import top10_jp from "../Resources/Images/background-image/top10-background-jp.png"
 
-import foodTop10 from "../Resources/Images/background-image/food.png"
-import foodTop10_jp from "../Resources/Images/background-image/food-jp.png"
+import restaurantTop10 from "../Resources/Images/background-image/restaurant.png"
+import restaurantTop10_jp from "../Resources/Images/background-image/restaurant-jp.png"
 import activityTop10 from "../Resources/Images/background-image/activity.png"
 import activityTop10_jp from "../Resources/Images/background-image/activity-jp.png"
-import accomodationTop10 from "../Resources/Images/background-image/accomodation.png"
-import accomodationTop10_jp from "../Resources/Images/background-image/accomodation-jp.png"
+import accommodationTop10 from "../Resources/Images/background-image/accommodation.png"
+import accommodationTop10_jp from "../Resources/Images/background-image/accommodation-jp.png"
 import attractionTop10 from "../Resources/Images/background-image/attraction.png"
 import attractionTop10_jp from "../Resources/Images/background-image/attraction-jp.png"
 
@@ -45,8 +45,8 @@ const Home = ({onChange = f => f}) => {
     const [activitiesJp, setActivitiesJp] = useState([]); // 일본어 숙소 데이터
     const [attractionsKo, setAttractionsKo] = useState([]); // 일본어 숙소 데이터
     const [attractionsJp, setAttractionsJp] = useState([]); // 일본어 숙소 데이터
-    const [restaurantKo, setRestaurantsKo] = useState([]); // 일본어 숙소 데이터
-    const [restaurantJp, setRestaurantsJp] = useState([]); // 일본어 숙소 데이터
+    const [restaurantsKo, setRestaurantsKo] = useState([]); // 일본어 숙소 데이터
+    const [restaurantsJp, setRestaurantsJp] = useState([]); // 일본어 숙소 데이터
 
 
     const toggleLanguage = () => {
@@ -57,10 +57,10 @@ const Home = ({onChange = f => f}) => {
     // 한국어와 일본어 데이터를 합치는 함수
     const categories = [
         {
-            name: 'food',
-            src: food_category,
-            koData: restaurantKo,
-            jpData: restaurantJp,
+            name: 'restaurant',
+            src: restaurant_category,
+            koData: restaurantsKo,
+            jpData: restaurantsJp,
         },
         {
             name: 'activity',
@@ -69,8 +69,8 @@ const Home = ({onChange = f => f}) => {
             jpData: activitiesJp,
         },
         {
-            name: 'accomodation',
-            src: accomodation_category,
+            name: 'accommodation',
+            src: accommodation_category,
             koData: accommodationsKo,
             jpData: accommodationsJp,
         },
@@ -175,14 +175,14 @@ const Home = ({onChange = f => f}) => {
             </div>
             <div>
                 {isKorean ? (
-                    <img className="foodTop10" src={foodTop10}/>
+                    <img className="restaurantTop10" src={restaurantTop10}/>
                 ) : (
-                    <img className="foodTop10_jp" src={foodTop10_jp}/>
+                    <img className="restaurantTop10_jp" src={restaurantTop10_jp}/>
                 )}
             </div>
             <section>
-                {getLocalizedData(isKorean, restaurantKo, restaurantJp).length > 0 && (
-                    <CarouselComponent items={getLocalizedData(isKorean, restaurantKo, restaurantJp)}/>
+                {getLocalizedData(isKorean, restaurantsKo, restaurantsJp).length > 0 && (
+                    <CarouselComponent items={getLocalizedData(isKorean, restaurantsKo, restaurantsJp)}/>
                 )}
             </section>
 
@@ -201,9 +201,9 @@ const Home = ({onChange = f => f}) => {
 
             <div>
                 {isKorean ? (
-                    <img className="accomodationTop10" src={accomodationTop10}/>
+                    <img className="accommodationTop10" src={accommodationTop10}/>
                 ) : (
-                    <img className="accomodationTop10_jp" src={accomodationTop10_jp}/>
+                    <img className="accommodationTop10_jp" src={accommodationTop10_jp}/>
                 )}
             </div>
             <section>

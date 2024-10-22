@@ -1,18 +1,28 @@
 package com.example.jeju_server.service;
 
-import com.example.jeju_server.domain.entity.UserEntity;
-import com.example.jeju_server.repository.UserRepository;
+import com.example.jeju_server.domain.entity.*;
+import com.example.jeju_server.domain.enums.PlaceType;
+import com.example.jeju_server.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
 
 @Service
 public class UserService {
     @Autowired
     private UserRepository userRepository;
-
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private ActivityRepository activityRepository;
+    @Autowired
+    private AttractionRepository attractionRepository;
+    @Autowired
+    private RestaurantRepository restaurantRepository;
+    @Autowired
+    private AccommodationRepository accommodationRepository;
+
 
     public UserEntity authenticate(String email, String password) {
         // 이메일을 사용하여 사용자 검색
@@ -45,5 +55,73 @@ public class UserService {
         newUser.setRoleName("USER"); // 기본 역할 설정
 
         return userRepository.save(newUser); // 저장 후 반환
+    }
+
+    // 이메일을 통해 사용자 검색
+    public UserEntity findByEmail(String email) {
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new IllegalArgumentException("사용자를 찾을 수 없습니다."));
+    }
+
+
+    public void incrementPlaceLikes(Integer placeId, PlaceType placeType) {
+        switch (placeType) {
+            case ACTIVITY:
+                ActivityEntity activity = activityRepository.findById(placeId)
+                        .orElseThrow(() -> new RuntimeException("Activity not found"));
+                activity.setLikes(activity.getLikes() + 1);
+                activityRepository.save(activity);
+                break;
+            case ATTRACTION:
+                AttractionEntity attraction = attractionRepository.findById(placeId)
+                        .orElseThrow(() -> new RuntimeException("Attraction not found"));
+                attraction.setLikes(attraction.getLikes() + 1);
+                attractionRepository.save(attraction);
+                break;
+            case RESTAURANT:
+                RestaurantEntity restaurant = restaurantRepository.findById(placeId)
+                        .orElseThrow(() -> new RuntimeException("Restaurant not found"));
+                restaurant.setLikes(restaurant.getLikes() + 1);
+                restaurantRepository.save(restaurant);
+                break;
+            case ACCOMMODATION:
+                AccommodationEntity accommodation = accommodationRepository.findById(placeId)
+                        .orElseThrow(() -> new RuntimeException("Accommodation not found"));
+                accommodation.setLikes(accommodation.getLikes() + 1);
+                accommodationRepository.save(accommodation);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid place type: " + placeType);
+        }
+    }
+    public void decrementPlaceLikes(Integer placeId, PlaceType placeType) {
+        switch (placeType) {
+            case ACTIVITY:
+                ActivityEntity activity = activityRepository.findById(placeId)
+                        .orElseThrow(() -> new RuntimeException("Activity not found"));
+                activity.setLikes(activity.getLikes() - 1);
+                activityRepository.save(activity);
+                break;
+            case ATTRACTION:
+                AttractionEntity attraction = attractionRepository.findById(placeId)
+                        .orElseThrow(() -> new RuntimeException("Attraction not found"));
+                attraction.setLikes(attraction.getLikes() - 1);
+                attractionRepository.save(attraction);
+                break;
+            case RESTAURANT:
+                RestaurantEntity restaurant = restaurantRepository.findById(placeId)
+                        .orElseThrow(() -> new RuntimeException("Restaurant not found"));
+                restaurant.setLikes(restaurant.getLikes() - 1);
+                restaurantRepository.save(restaurant);
+                break;
+            case ACCOMMODATION:
+                AccommodationEntity accommodation = accommodationRepository.findById(placeId)
+                        .orElseThrow(() -> new RuntimeException("Accommodation not found"));
+                accommodation.setLikes(accommodation.getLikes() - 1);
+                accommodationRepository.save(accommodation);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid place type: " + placeType);
+        }
     }
 }

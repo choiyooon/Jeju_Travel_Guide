@@ -215,7 +215,7 @@
     -webkit-animation: top10motion 0.7s linear 0s infinite alternate;
 }
 
-.foodTop10{
+.restaurantTop10{
     width: 20vw;
     padding: 5vh;
 }
@@ -226,7 +226,7 @@
     padding: 5vh;
 }
 
-.accomodationTop10{
+.accommodationTop10{
     margin-top: 3vw;
     width: 23vw;
     padding: 5vh;
@@ -237,7 +237,7 @@
     width: 23vw;
     padding: 5vh;
 }
-.foodTop10_jp{
+.restaurantTop10_jp{
     width: 25vw;
     padding: 5vh;
 }
@@ -248,7 +248,7 @@
     padding: 5vh;
 }
 
-.accomodationTop10_jp{
+.accommodationTop10_jp{
     margin-top: 3vw;
     width: 33vw;
     padding: 5vh;
