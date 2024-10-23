@@ -6,6 +6,7 @@ import searchIcon from "../Resources/Images/background-image/searchIcon.png";
 import Swal from "sweetalert2"; // 알림창 모듈
 import { useTranslation } from 'react-i18next';
 import './MapModal.css';  // CSS 파일 추가
+import mainLogo from "../Resources/Images/main-logo.png"
 
 
 const MapModal = ({ categories, isKorean, selectedCategory }) => {
@@ -78,9 +79,10 @@ const MapModal = ({ categories, isKorean, selectedCategory }) => {
 
     return (
         <>
+            <img id="logo" src={mainLogo} alt="logo"/>
             <form className="inputForm" onSubmit={handleSubmit} onReset={handleReset}>
                 <div className="searchDiv">
-                    <select onChange={changeCategory} id="categorySelect" value={selected} >
+                    <select onChange={changeCategory} id="categorySelect" value={selected}>
                         <option value="activity">{t('activity')}</option>
                         <option value="restaurant">{t('restaurant')}</option>
                         <option value="accommodation">{t('accommodation')}</option>
@@ -96,19 +98,23 @@ const MapModal = ({ categories, isKorean, selectedCategory }) => {
                         <img id="searchIcon" onClick={handleSubmit} src={searchIcon}/>
                     </div>
                     <div className="buttonDiv">
-                        <button type="submit" style={{display:"none"}}>enterKey시 검색할 수 있는 형식상 submit 버튼</button>
+                        <button type="submit" style={{display: "none"}}>enterKey시 검색할 수 있는 형식상 submit 버튼</button>
                         <button id="initializeBtn" type="reset">{t('initialize')}</button>
-                        <button id ="showAllBtn" onClick={handleShowAll}>{t('showAll')}</button>
+                        <button id="showAllBtn" onClick={handleShowAll}>{t('showAll')}</button>
 
                         <Link to="/sub/addplace">
-                            <button id="addBtn" type="add" disabled={(sessionStorage.getItem("loginFlag") === "ON") ? false : true} style={{ display: (localStorage.getItem("loginFlag") === "ON") ? "" : "none" }}
-                            >추가</button></Link>
+                            <button id="addBtn" type="add"
+                                    disabled={(sessionStorage.getItem("loginFlag") === "ON") ? false : true}
+                                    style={{display: (localStorage.getItem("loginFlag") === "ON") ? "" : "none"}}
+                            >추가
+                            </button>
+                        </Link>
                     </div>
                 </div>
             </form>
             <div className="mapListDiv">
-                <Map searchPlaces={place} />
-                <List places={category} setPlace={setPlace} placeType={selected} />
+                <Map searchPlaces={place}/>
+                <List places={category} setPlace={setPlace} placeType={selected}/>
             </div>
         </>
     );

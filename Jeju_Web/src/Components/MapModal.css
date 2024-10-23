@@ -49,17 +49,19 @@
 
 
 .mapListDiv{
-    background-image: url('../Resources/Images/background-image/mapDiv-background.png');
-    background-repeat: no-repeat;
-    background-size: 100% auto;
-    border-style: none;
-    background-color: white;
-    box-shadow: 0px 15px 20px 15px rgba(0, 0, 0, 0.2);
-    margin-top: 60px;
-    border-radius: 20px;
-
+    /*background-image: url('../Resources/Images/background-image/mapDiv-background.png');*/
+    /*background-repeat: no-repeat;*/
+    /*background-size: 100% auto;*/
+    /*border-style: none;*/
+    /*background-color: white;*/
+    /*box-shadow: 0px 15px 20px 15px rgba(0, 0, 0, 0.2);*/
+    /*margin-top: 60px;*/
+    /*border-radius: 20px;*/
+    margin-top: 3vh;
 }
-
+#logo{
+    width: 15%;
+}
 .addPlaceMapDiv{
     border-radius: 20px;
     background-color: white;

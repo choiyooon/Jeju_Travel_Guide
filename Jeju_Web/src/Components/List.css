@@ -1,20 +1,17 @@
 .List-Container {
+    background: floralwhite;
     text-align: center;
     display: inline-block;
-    /*
-    background-image: url("../../Resources/Images/background-image/item-list-background.png");
-    background-size: cover;
-    background-position: center;
-    */
+
     width: 30vw;
-    height: 560px;
-    margin-top: 20px;
-    margin-bottom: 50px;
-    margin-right: 20px;
+    height: 550px;
     margin-left: 50px;
 
     overflow-y: scroll;
     -ms-overflow-style: none;
+    border-style: none;
+    box-shadow: 0px 15px 20px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
 }
 
 .List-Container::-webkit-scrollbar {
