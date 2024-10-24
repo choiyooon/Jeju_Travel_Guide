@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import Carousel from "react-material-ui-carousel";
 import {motion, AnimatePresence} from 'framer-motion';
-import CloseIcon from '@mui/icons-material/Close';
 import './CarouselComponent.css'; // CSS 파일 가져오기
 
 const CarouselComponent = ({items}) => {

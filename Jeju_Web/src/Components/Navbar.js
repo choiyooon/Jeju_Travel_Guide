@@ -4,7 +4,8 @@ import axios from "axios";
 import {useTranslation} from 'react-i18next';
 import koreaFlag from "../Resources/Images/korea_flag.png";
 import japanFlag from "../Resources/Images/japan_flag.png";
-import mainLogo from "../Resources/Images/main-logo.png"; // 로고 이미지 추가
+import sun from "../Resources/Images/sun1.png";
+import moon from "../Resources/Images/moon1.png";
 
 import Weather from "./Weather";
 import "./Navbar.css";
@@ -28,6 +29,7 @@ const Navbar = ({isKorean, toggleLanguage}) => {
     const [signupName, setSignupName] = useState("");
 
     const [isLoggedIn, setIsLoggedIn] = useState(false); // 로그인 상태를 이곳에서 관리
+    const [isNightMode, setIsNightMode] = useState(false); // 야간 모드 상태
 
     const onChangeId = (e) => {
         setId(e.target.value);
@@ -122,23 +124,34 @@ const Navbar = ({isKorean, toggleLanguage}) => {
         }
     }, [loginModalIsOpen, signupModalIsOpen]);
 
+    const toggleNightMode = () => {
+        setIsNightMode(prev => !prev);
+        document.body.classList.toggle('night-mode');
+    };
     return (
         <>
             <div className="fixed-navbar">
+                <button onClick={toggleNightMode} className="night-mode-toggle-btn">
+                    <img
+                        src={isNightMode ? moon : sun} // 이미지 변경
+                        alt={isNightMode ? "Moon" : "Sun"}
+                        className="night-mode-toggle-icon"
+                    />
+                </button>
                 {/*국제화 토글*/}
-                <div className="toggle-container" onClick={toggleLanguage}>
-                    <div className={`toggle-track ${isKorean ? "active" : "inactive"}`}>
-                        <div className={`toggle-thumb ${isKorean ? "thumb-active" : "thumb-inactive"}`}>
+                <div className="language-toggle-container" onClick={toggleLanguage}>
+                    <div className={`language-toggle-track ${isKorean ? "active" : "inactive"}`}>
+                        <div className={`language-toggle-thumb ${isKorean ? "thumb-active" : "thumb-inactive"}`}>
                             <img
                                 src={isKorean ? koreaFlag : japanFlag}
                                 alt={isKorean ? "Korean" : "Japanese"}
-                                className="flag-icon"
+                                className="language-toggle-icon"
                             />
                         </div>
                         <span
-                            className={`toggle-text left-text ${isKorean ? "active-text" : "inactive-text"}`}>한국어</span>
+                            className={`language-toggle-text left-text ${isKorean ? "active-text" : "inactive-text"}`}>한국어</span>
                         <span
-                            className={`toggle-text right-text ${isKorean ? "inactive-text" : "active-text"}`}>日本語</span>
+                            className={`language-toggle-text right-text ${isKorean ? "inactive-text" : "active-text"}`}>日本語</span>
                     </div>
                 </div>
                 {/*로그인 버튼*/}
@@ -152,7 +165,7 @@ const Navbar = ({isKorean, toggleLanguage}) => {
 
                 {/* 날씨 컴포넌트 추가 */}
                 <div className="weather-container">
-                    <Weather currentLanguage={isKorean ? 'ko' : 'ja'} />
+                    <Weather currentLanguage={isKorean ? 'ko' : 'ja'}/>
                 </div>
                 {/* 로그인 모달 */}
                 <div className="container" style={{display: loginModalIsOpen ? "block" : "none"}}>

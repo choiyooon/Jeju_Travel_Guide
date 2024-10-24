@@ -16,19 +16,17 @@ import maintext2_jp from "../Resources/Images/background-image/main-text2-jp.png
 import maintext3_jp from "../Resources/Images/background-image/main-text3-jp.png"
 import maintext4_jp from "../Resources/Images/background-image/main-text4-jp.png"
 
+import star from "../Resources/Images/background-image/star.png"
+import click from "../Resources/Images/background-image/click.png"
+
 import mainBottomBackground from "../Resources/Images/background-image/main_bottom_background.png"
 import top10 from "../Resources/Images/background-image/top10-background.png"
 import top10_jp from "../Resources/Images/background-image/top10-background-jp.png"
 
-import restaurantTop10 from "../Resources/Images/background-image/restaurant.png"
-import restaurantTop10_jp from "../Resources/Images/background-image/restaurant-jp.png"
-import activityTop10 from "../Resources/Images/background-image/activity.png"
-import activityTop10_jp from "../Resources/Images/background-image/activity-jp.png"
-import accommodationTop10 from "../Resources/Images/background-image/accommodation.png"
-import accommodationTop10_jp from "../Resources/Images/background-image/accommodation-jp.png"
-import attractionTop10 from "../Resources/Images/background-image/attraction.png"
-import attractionTop10_jp from "../Resources/Images/background-image/attraction-jp.png"
-
+import restaurantTop10 from "../Resources/Images/background-image/top10-restaurant.png"
+import activityTop10 from "../Resources/Images/background-image/top10-activity.png"
+import accommodationTop10 from "../Resources/Images/background-image/top10-accommodation.png"
+import attractionTop10 from "../Resources/Images/background-image/top10-attraction.png"
 
 import "./Home.css";
 import Navbar from "../Components/Navbar";
@@ -131,41 +129,51 @@ const Home = ({onChange = f => f}) => {
 
             <div className="logo-div">
                 {isKorean ? (
-                    <p className="logo-editorPick">"올레"는 제주도의 걷기 코스로, "오다"라는 이중적 의미를 담았습니다.
+                    <p className="sub-title-korean">"올레"는 제주도의 걷기 코스로, "오다"라는 이중적 의미를 담았습니다.
                     </p>
                 ) : (
-                    <p className="logo-sub-japanese">「オルレ」は、発音が日本語の「来る」に似た、済州島のトレッキングコースです。
+                    <p className="sub-title-japanese">「オルレ」は、発音が日本語の「来る」に似た、済州島のトレッキングコースです。
                     </p>
                 )}
                 <div className="logo-inline-div" style={{animation: modalIsOpen ? "none" : ""}}>
                     {isKorean ? (
-                        <p className="logo-korean">제주! 올레?</p>
+                        <p className="title-korean">제주! 올레?</p>
                     ) : (
-                        <p className="logo-japanese">済州! オルレ?</p>
+                        <p className="title-japanese">済州! オルレ?</p>
                     )}
                 </div>
             </div>
             <div style={{display: "block", height: "100vw"}}></div>
             <div className="main-text-container">
-                <img className="main-text1" src={maintext1}/>
-                {isKorean ? (<>
-                    <img className="main-text2" src={maintext2}/>
-                    <img className="main-text3" src={maintext3}/>
-                    <img className="main-text4" src={maintext4}/>
-                </>) : (<>
-                    <img className="main-text2-jp" src={maintext2_jp}/>
-                    <img className="main-text3-jp" src={maintext3_jp}/>
-                    <img className="main-text4-jp" src={maintext4_jp}/>
-                </>)}
-
-                <img className="main-text5" style={{animation: modalIsOpen ? "none" : ""}} src={maintext5}/>
+                <div className="main-text1">젲젷젶줓젴줗</div>
+                {isKorean ? (
+                    <div className="main-text-ko-container">
+                        <div className="main-text2-ko">카테고리 별로,</div>
+                        <div className="main-text3-ko">내 취향 별로,</div>
+                        <div className="main-text3-ko">내 마음 속 <img className="star-img" src={star} alt="Star Icon"/>️로</div>
+                    </div>
+                ) : (
+                    <div className="main-text-jp-container">
+                        <div className="main-text2-jp">楽しいこと、ほしい</div>
+                        <div className="main-text3-jp-line">
+                            <span className="main-text3-jp-hanza">美味</span>
+                            <span className="main-text3-jp">しいもの、ほしい</span>
+                        </div>
+                        <div className="main-text3-jp-line">
+                            <span className="main-text3-jp-hanza">済州の</span>
+                            <img className="star-img" src={star} alt="Star Icon"/>
+                            <span className="main-text3-jp">が、ほしい</span>
+                        </div>
+                    </div>
+                )}
+                <div className="main-text4">Click ! <img className="star-img" src={click}/></div>
             </div>
             <div className="categorySection" style={{marginTop: "50px", marginBottom: "100px"}}>
-                <Category categories={categories} isKorean={isKorean} />
+                <Category categories={categories} isKorean={isKorean}/>
 
 
             </div>
-            <div className="top10-container">
+            <div className="top10-img-container">
                 {isKorean ? (
                     <img className="top10" src={top10}/>
                 ) : (
@@ -174,11 +182,17 @@ const Home = ({onChange = f => f}) => {
 
             </div>
             <div>
-                {isKorean ? (
-                    <img className="restaurantTop10" src={restaurantTop10}/>
-                ) : (
-                    <img className="restaurantTop10_jp" src={restaurantTop10_jp}/>
-                )}
+                <div className="top10-container">
+                    {isKorean ? (
+                        <div className="top10-text-ko">음식</div>
+                    ) : (
+                        <div>
+                            <span className="top10-text-jp-hanza">食</span>
+                            <span className="top10-text-jp">べ</span>
+                            <span className="top10-text-jp-hanza">物</span>
+                        </div>)}
+                    <img className="top10-restaurant-image" src={restaurantTop10} alt={restaurantTop10}/>
+                </div>
             </div>
             <section>
                 {getLocalizedData(isKorean, restaurantsKo, restaurantsJp).length > 0 && (
@@ -187,11 +201,14 @@ const Home = ({onChange = f => f}) => {
             </section>
 
             <div>
-                {isKorean ? (
-                    <img className="activityTop10" src={activityTop10}/>
-                ) : (
-                    <img className="activityTop10_jp" src={activityTop10_jp}/>
-                )}
+                <div className="top10-container">
+                    {isKorean ? (
+                        <div className="top10-text-ko">액티비티</div>
+                    ) : (
+                        <div className="top10-text-jp">アクティビティ</div>
+                    )}
+                    <img className="top10-activity-image" src={activityTop10} alt={activityTop10}/>
+                </div>
             </div>
             <section>
                 {getLocalizedData(isKorean, activitiesKo, activitiesJp).length > 0 && (
@@ -200,11 +217,14 @@ const Home = ({onChange = f => f}) => {
             </section>
 
             <div>
-                {isKorean ? (
-                    <img className="accommodationTop10" src={accommodationTop10}/>
-                ) : (
-                    <img className="accommodationTop10_jp" src={accommodationTop10_jp}/>
-                )}
+                <div className="top10-container">
+                    {isKorean ? (
+                        <div className="top10-text-ko">숙소</div>
+                    ) : (
+                        <div className="top10-text-jp-hanza">宿泊施設</div>
+                    )}
+                    <img className="top10-accommodation-image" src={accommodationTop10} alt={accommodationTop10}/>
+                </div>
             </div>
             <section>
                 {getLocalizedData(isKorean, accommodationsKo, accommodationsJp).length > 0 && (
@@ -213,11 +233,14 @@ const Home = ({onChange = f => f}) => {
             </section>
 
             <div>
-                {isKorean ? (
-                    <img className="attractionTop10" src={attractionTop10}/>
-                ) : (
-                    <img className="attractionTop10_jp" src={attractionTop10_jp}/>
-                )}
+                <div className="top10-container">
+                    {isKorean ? (
+                        <div className="top10-text-ko">관광지</div>
+                    ) : (
+                        <div className="top10-text-jp-hanza">観光地</div>
+                    )}
+                    <img className="top10-attraction-image" src={attractionTop10} alt={attractionTop10}/>
+                </div>
             </div>
             <section>
                 {getLocalizedData(isKorean, attractionsKo, attractionsJp).length > 0 && (

@@ -1,5 +1,7 @@
 /* 플로팅 날씨 정보 영역 */
 .weather-container {
+    font-family: "EF_Diary";
+    color: black;
     position: fixed;
     top: 5vw;
     right: 1vw;
