@@ -7,11 +7,13 @@ import com.example.jeju_server.service.LikesService;
 import com.example.jeju_server.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -116,5 +118,42 @@ public class AuthController {
     }
 
 
+    @GetMapping(value = "/like/status")
+    public ResponseEntity<?> getLikeStatus(@RequestParam("placeId") List<Integer> placeIds,
+                                           @RequestParam("placeType") String placeTypeString,
+                                           @RequestHeader("Authorization") String token) {
+        try {
+            // 받은 토큰 검증
+            if (!jwtTokenProvider.validateToken(token.substring(7))) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid token");
+            }
+
+            // 토큰에서 사용자 이메일 추출
+            String email = jwtTokenProvider.getEmail(token.substring(7));
+
+            // placeType을 Enum으로 변환
+            PlaceType placeType;
+            try {
+                placeType = PlaceType.valueOf(placeTypeString.toUpperCase());
+            } catch (IllegalArgumentException e) {
+                return ResponseEntity.badRequest().body("Invalid place type: " + placeTypeString);
+            }
+
+            // 사용자 정보 조회
+            UserEntity user = userService.findByEmail(email);
+
+            // 각 장소에 대한 좋아요 상태 확인
+            List<Boolean> likedStatuses = new ArrayList<>();
+            for (Integer placeId : placeIds) {
+                boolean isLiked = likesService.isUserLikedPlace(user, placeId, placeType);
+                likedStatuses.add(isLiked);
+            }
+
+            // 좋아요 상태 반환
+            return ResponseEntity.ok().body(Collections.singletonMap("likesStatus", likedStatuses));
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Error retrieving like status: " + e.getMessage());
+        }
+    }
 
 }

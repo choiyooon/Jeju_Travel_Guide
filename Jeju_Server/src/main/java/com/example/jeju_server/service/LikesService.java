@@ -56,5 +56,8 @@ public class LikesService {
         likesRepository.save(newLike);
         return true; // 새로운 좋아요 추가 성공
     }
-
+    public boolean isUserLikedPlace(UserEntity user, Integer placeId, PlaceType placeType) {
+        // 좋아요 여부 확인 (likesRepository 등을 이용하여 DB에서 조회)
+        return likesRepository.existsByUserAndPlaceIdAndPlaceTypeAndIsActive(user, placeId, placeType,true);
+    }
 }

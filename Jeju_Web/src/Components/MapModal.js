@@ -14,6 +14,7 @@ const MapModal = ({ categories, isKorean, selectedCategory }) => {
     const [place, setPlace] = useState([]); // 장소 데이터
     const [category, setCategory] = useState([]); // 현재 카테고리의 데이터
     const [selected, setSelected] = useState(selectedCategory.id);  // 선택된 카테고리로 기본 설정
+    const [zoomToPlace, setZoomToPlace] = useState(null);  // 선택된 장소를 지도에서 확대할 때 사용하는 상태
 
     const { t } = useTranslation(); // i18n 훅을 이용해 번역 함수 사용
 
@@ -68,14 +69,16 @@ const MapModal = ({ categories, isKorean, selectedCategory }) => {
     const handleReset = () => {
         setPlace([]);
         setInputText("");
+        setZoomToPlace(null);  // 줌된 상태 해제
+
     };
     // 모두보기 버튼
     const handleShowAll = () => {
         setPlace(category)
+        setZoomToPlace(null);
     }
     useEffect(() => {
         handleReset(); // 초기화
-
         if (category.length > 0) {  // category가 업데이트된 후에만 실행
             const timer = setTimeout(() => {
                 handleShowAll(); // category가 설정된 후 호출
@@ -84,6 +87,10 @@ const MapModal = ({ categories, isKorean, selectedCategory }) => {
             return () => clearTimeout(timer); // 타이머 정리
         }
     }, [category]); // category가 업데이트될 때만 실행
+
+    const handlePlaceSelect = (selectedPlace) => {
+        setZoomToPlace(selectedPlace);  // 선택한 장소의 좌표를 설정하여 확대
+    };
 
     return (
         <>
@@ -121,8 +128,8 @@ const MapModal = ({ categories, isKorean, selectedCategory }) => {
                 </div>
             </form>
             <div className="mapListDiv">
-                <Map searchPlaces={place}/>
-                <List places={category} setPlace={setPlace} placeType={selected}/>
+                <Map searchPlaces={place} zoomToPlace={zoomToPlace} />
+                <List places={category} setPlace={setPlace} placeType={selected} onPlaceSelect={handlePlaceSelect} />
             </div>
         </>
     );

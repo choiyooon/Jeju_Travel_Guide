@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import './Map.css'; // Import the CSS file
 
-const Map = ({ searchPlaces }) => {
+const Map = ({ searchPlaces, zoomToPlace }) => {
 
     useEffect(() => {
         // 네이버 지도 API 스크립트를 동적으로 로드
@@ -14,9 +14,13 @@ const Map = ({ searchPlaces }) => {
                 console.log("Naver maps object is ready.");
                 const map = renderMap(searchPlaces);  // searchPlaces가 빈 배열이면 마커가 표시되지 않음
 
-                // 지도 객체가 렌더링된 후에 중심 좌표를 강제로 재설정
-                const jejuCenter = new window.naver.maps.LatLng(33.36241576632475, 126.5333088372503);
-                map.setCenter(jejuCenter);  // 지도의 중심을 제주도로 다시 설정
+                // 선택된 장소가 있으면 그 장소로 지도의 중심을 이동하고 줌 레벨을 변경
+                if (zoomToPlace) {
+                    const { latitude, longitude } = zoomToPlace;
+                    const selectedPlaceCenter = new window.naver.maps.LatLng(latitude, longitude);
+                    map.setCenter(selectedPlaceCenter); // 선택된 장소로 지도의 중심 이동
+                    map.setZoom(15); // 줌 레벨 설정
+                }
             } else {
                 console.error('Naver Maps script failed to load.');
             }
@@ -28,7 +32,7 @@ const Map = ({ searchPlaces }) => {
             // 컴포넌트가 언마운트될 때 스크립트 제거
             document.head.removeChild(script);
         };
-    }, [searchPlaces]);
+    }, [searchPlaces, zoomToPlace]); // zoomToPlace를 의존성으로 추가하여 장소 선택 시 줌 적용
 
     const renderMap = (places) => {
         if (!window.naver || !window.naver.maps) {
@@ -50,6 +54,7 @@ const Map = ({ searchPlaces }) => {
             return map; // 빈 배열이어도 맵 객체를 반환
         }
 
+        // 검색된 장소에 마커 생성
         places.forEach(place => {
             const marker = new window.naver.maps.Marker({
                 position: new window.naver.maps.LatLng(place.latitude, place.longitude),
@@ -73,7 +78,6 @@ const Map = ({ searchPlaces }) => {
     };
 
     return <div id='map'></div>;
-
 };
 
 export default Map;

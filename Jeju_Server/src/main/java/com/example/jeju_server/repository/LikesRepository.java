@@ -11,5 +11,5 @@ public interface LikesRepository extends JpaRepository<LikesEntity, Integer> {
 
     Optional<LikesEntity> findByUserAndPlaceIdAndPlaceType(UserEntity user, Integer placeId, PlaceType placeType);
 
-    boolean existsByUserAndPlaceIdAndPlaceType(UserEntity user, Integer placeId, PlaceType placeType);
+    boolean existsByUserAndPlaceIdAndPlaceTypeAndIsActive(UserEntity user, Integer placeId, PlaceType placeType, boolean isActive);
 }
