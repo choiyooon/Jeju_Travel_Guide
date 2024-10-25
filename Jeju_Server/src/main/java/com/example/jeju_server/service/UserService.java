@@ -15,13 +15,8 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
     @Autowired
-    private ActivityRepository activityRepository;
-    @Autowired
-    private AttractionRepository attractionRepository;
-    @Autowired
-    private RestaurantRepository restaurantRepository;
-    @Autowired
-    private AccommodationRepository accommodationRepository;
+    private PlaceService placeService;  // 단일 서비스 사용
+
 
 
     public UserEntity authenticate(String email, String password) {
@@ -63,65 +58,14 @@ public class UserService {
                 .orElseThrow(() -> new IllegalArgumentException("사용자를 찾을 수 없습니다."));
     }
 
-
+    // 좋아요 수 증가 메서드
     public void incrementPlaceLikes(Integer placeId, PlaceType placeType) {
-        switch (placeType) {
-            case ACTIVITY:
-                ActivityEntity activity = activityRepository.findById(placeId)
-                        .orElseThrow(() -> new RuntimeException("Activity not found"));
-                activity.setLikes(activity.getLikes() + 1);
-                activityRepository.save(activity);
-                break;
-            case ATTRACTION:
-                AttractionEntity attraction = attractionRepository.findById(placeId)
-                        .orElseThrow(() -> new RuntimeException("Attraction not found"));
-                attraction.setLikes(attraction.getLikes() + 1);
-                attractionRepository.save(attraction);
-                break;
-            case RESTAURANT:
-                RestaurantEntity restaurant = restaurantRepository.findById(placeId)
-                        .orElseThrow(() -> new RuntimeException("Restaurant not found"));
-                restaurant.setLikes(restaurant.getLikes() + 1);
-                restaurantRepository.save(restaurant);
-                break;
-            case ACCOMMODATION:
-                AccommodationEntity accommodation = accommodationRepository.findById(placeId)
-                        .orElseThrow(() -> new RuntimeException("Accommodation not found"));
-                accommodation.setLikes(accommodation.getLikes() + 1);
-                accommodationRepository.save(accommodation);
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid place type: " + placeType);
-        }
+        placeService.incrementLikes(placeId, placeType);
     }
+
+    // 좋아요 수 감소 메서드
     public void decrementPlaceLikes(Integer placeId, PlaceType placeType) {
-        switch (placeType) {
-            case ACTIVITY:
-                ActivityEntity activity = activityRepository.findById(placeId)
-                        .orElseThrow(() -> new RuntimeException("Activity not found"));
-                activity.setLikes(activity.getLikes() - 1);
-                activityRepository.save(activity);
-                break;
-            case ATTRACTION:
-                AttractionEntity attraction = attractionRepository.findById(placeId)
-                        .orElseThrow(() -> new RuntimeException("Attraction not found"));
-                attraction.setLikes(attraction.getLikes() - 1);
-                attractionRepository.save(attraction);
-                break;
-            case RESTAURANT:
-                RestaurantEntity restaurant = restaurantRepository.findById(placeId)
-                        .orElseThrow(() -> new RuntimeException("Restaurant not found"));
-                restaurant.setLikes(restaurant.getLikes() - 1);
-                restaurantRepository.save(restaurant);
-                break;
-            case ACCOMMODATION:
-                AccommodationEntity accommodation = accommodationRepository.findById(placeId)
-                        .orElseThrow(() -> new RuntimeException("Accommodation not found"));
-                accommodation.setLikes(accommodation.getLikes() - 1);
-                accommodationRepository.save(accommodation);
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid place type: " + placeType);
-        }
+        placeService.decrementLikes(placeId, placeType);
     }
+
 }
