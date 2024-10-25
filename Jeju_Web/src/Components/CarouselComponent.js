@@ -4,16 +4,18 @@ import {motion, AnimatePresence} from 'framer-motion';
 import './CarouselComponent.css'; // CSS 파일 가져오기
 
 const CarouselComponent = ({items}) => {
-    const [open, setOpen] = useState(false);
+    const [modalIsOpen, setModalIsOpen] = useState(false);
     const [currentMap, setCurrentMap] = useState('');
 
-    const handleClickOpen = (mapUrl) => {
+    const openModal = (mapUrl) => {
         setCurrentMap(mapUrl);
-        setOpen(true);
+        setModalIsOpen(true);
+        document.body.style.overflow = 'hidden';
     };
 
     const closeModal = () => {
-        setOpen(false);
+        setModalIsOpen(false);
+        document.body.style.overflow = 'auto';
     };
 
     const chunkedItems = [];
@@ -28,7 +30,7 @@ const CarouselComponent = ({items}) => {
                     <div key={index}>
                         <div className="carousel_container">
                             {chunk.map((item, i) => (
-                                <div key={i} className="carousel_div" onClick={() => handleClickOpen(item.kakaoMap)}>
+                                <div key={i} className="carousel_div" onClick={() => openModal(item.kakaoMap)}>
                                     <img className="carousel_img" src={item.image} alt={item.name}/>
                                     <h4 className="carousel_name">{item.name}</h4>
                                 </div>
@@ -40,7 +42,7 @@ const CarouselComponent = ({items}) => {
 
             <AnimatePresence>
 
-                {open && (
+                {modalIsOpen && (
                     <motion.div
                         className="top10-modal-overlay"
                         initial={{opacity: 0}}

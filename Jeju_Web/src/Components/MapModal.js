@@ -65,17 +65,25 @@ const MapModal = ({ categories, isKorean, selectedCategory }) => {
         }
     };
     // 초기화 버튼
-    const handleReset = (e) => {
-        e.preventDefault();
+    const handleReset = () => {
         setPlace([]);
         setInputText("");
     };
     // 모두보기 버튼
-    const handleShowAll = (e) => {
-        e.preventDefault();
+    const handleShowAll = () => {
         setPlace(category)
     }
+    useEffect(() => {
+        handleReset(); // 초기화
 
+        if (category.length > 0) {  // category가 업데이트된 후에만 실행
+            const timer = setTimeout(() => {
+                handleShowAll(); // category가 설정된 후 호출
+            }, 100); // 1초 후 실행
+
+            return () => clearTimeout(timer); // 타이머 정리
+        }
+    }, [category]); // category가 업데이트될 때만 실행
 
     return (
         <>

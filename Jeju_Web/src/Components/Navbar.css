@@ -20,7 +20,7 @@
     align-items: center; /* 세로 중앙 정렬 */
 }
 .night-mode-toggle-icon {
-    width:60px;
+    width:45px;
     display: flex;
 }
 
