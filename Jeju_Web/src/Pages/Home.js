@@ -1,20 +1,6 @@
 import React, {useState, useEffect, useRef} from "react";
-//import Carousel from "react-material-ui-carousel";
 import i18n from "./i18n";
 
-import restaurant_category from "../Resources/Images/restaurant.png"
-import activity_category from "../Resources/Images/activity.png"
-import accommodation_category from "../Resources/Images/accommodation.png"
-import attraction_category from "../Resources/Images/attraction.png"
-
-import maintext1 from "../Resources/Images/background-image/main-text1.png"
-import maintext2 from "../Resources/Images/background-image/main-text2.png"
-import maintext3 from "../Resources/Images/background-image/main-text3.png"
-import maintext4 from "../Resources/Images/background-image/main-text4.png"
-import maintext5 from "../Resources/Images/background-image/main-text5.png"
-import maintext2_jp from "../Resources/Images/background-image/main-text2-jp.png"
-import maintext3_jp from "../Resources/Images/background-image/main-text3-jp.png"
-import maintext4_jp from "../Resources/Images/background-image/main-text4-jp.png"
 
 import star from "../Resources/Images/background-image/star.png"
 import click from "../Resources/Images/background-image/click.png"
@@ -55,44 +41,64 @@ const Home = ({onChange = f => f}) => {
     // 한국어와 일본어 데이터를 합치는 함수
     const categories = [
         {
-            name: 'restaurant',
-            src: restaurant_category,
+            id: 'restaurant',
+            nameKo: '맛집',
+            nameJp: 'レストラン',
             koData: restaurantsKo,
             jpData: restaurantsJp,
+            icon: '🍚'
         },
         {
-            name: 'activity',
-            src: activity_category,
+            id: 'activity',
+            nameKo: '액티비티',
+            nameJp: 'アクティビティ',
             koData: activitiesKo,
             jpData: activitiesJp,
+            icon: '🪂'
         },
         {
-            name: 'accommodation',
-            src: accommodation_category,
+            id: 'accommodation',
+            nameKo: '숙소',
+            nameJp: '宿泊',
             koData: accommodationsKo,
             jpData: accommodationsJp,
+            icon: '🏠'
         },
         {
-            name: 'attraction',
-            src: attraction_category,
+            id: 'attraction',
+            nameKo: '관광지',
+            nameJp: '観光地',
             koData: attractionsKo,
             jpData: attractionsJp,
+            icon: '🏔'
         },
     ];
 
     // 한국어와 일본어 데이터를 분리하여 저장하는 함수
     const handleDataLoaded = (data, setKo, setJp) => {
         setKo(data.map(item => ({
-            ...item,
+            id: item.id,
             name: item.nameKo,
             keyword: item.keywordKo,
-            explanation: item.explanationKo
+            explanation: item.explanationKo,
+            address: item.address,
+            image: item.image,
+            kakaoMap: item.kakaoMap,
+            likes: item.likes,
+            latitude: item.latitude,
+            longitude: item.longitude,
         })));
         setJp(data.map(item => ({
-            ...item,
+            id: item.id,
             name: item.nameJp,
             keyword: item.keywordJp,
-            explanation: item.explanationJp
+            explanation: item.explanationJp,
+            address: item.address,
+            image: item.image,
+            kakaoMap: item.kakaoMap,
+            likes: item.likes,
+            latitude: item.latitude,
+            longitude: item.longitude,
         })));
     };
 

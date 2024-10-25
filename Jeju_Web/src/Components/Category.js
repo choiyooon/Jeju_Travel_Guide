@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, {useState} from 'react';
+import {motion, AnimatePresence} from 'framer-motion';
 import './Category.css';  // CSS 파일 추가
 import MapModal from './MapModal'; // MapDiv 컴포넌트 가져오기
 
-const Category = ({ categories, isKorean }) => {
+const Category = ({categories, isKorean}) => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState(null);  // 선택된 카테고리 상태
 
@@ -17,24 +17,35 @@ const Category = ({ categories, isKorean }) => {
         setModalIsOpen(false);
         document.body.style.overflow = 'auto'; // 모달이 닫히면 스크롤 활성화
     };
+    console.log(categories)
 
     return (
         <div>
             {/* 카테고리를 동적으로 생성 */}
-            {categories.map((category, index) => (
-                <div key={index} id={category.name} className="category" onClick={() => openModal(category)}>
-                    <img className="categoryImage" src={category.src} alt={category.name} />
-                </div>
-            ))}
+            <div className="categories-container"> {/* 추가된 div */}
+                {categories.map((category, index) => (
+                    <div key={index} id={category.id} className="category" onClick={() => openModal(category)}>
+                        <div className="category-content"> {/* 추가된 div */}
+                            <div className="category-icon">
+                                {category.icon}
+                            </div>
+                            <div
+                                className={`category-text ${isKorean ? 'ko-style' : (category.nameJp === 'アクティビティ' || category.nameJp === 'レストラン' ? 'special-jp-style' : 'jp-style')}`}>
+                                {isKorean ? category.nameKo : category.nameJp}
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
 
             {/* 모달 애니메이션 적용 */}
             <AnimatePresence>
                 {modalIsOpen && (
                     <motion.div
                         className="modal-backdrop"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
+                        initial={{opacity: 0}}
+                        animate={{opacity: 1}}
+                        exit={{opacity: 0}}
                         onClick={closeModal} // 모달 바깥을 클릭하면 닫힘
                     >
                         <motion.div

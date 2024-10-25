@@ -13,21 +13,21 @@ const MapModal = ({ categories, isKorean, selectedCategory }) => {
     const [inputText, setInputText] = useState("");  // 검색창에 검색하는 내용
     const [place, setPlace] = useState([]); // 장소 데이터
     const [category, setCategory] = useState([]); // 현재 카테고리의 데이터
-    const [selected, setSelected] = useState(selectedCategory.name);  // 선택된 카테고리로 기본 설정
+    const [selected, setSelected] = useState(selectedCategory.id);  // 선택된 카테고리로 기본 설정
 
     const { t } = useTranslation(); // i18n 훅을 이용해 번역 함수 사용
 
 
     // 카테고리옵션 바뀔 때 마다 장소 데이터 설정
     useEffect(() => {
-        const initialCategory = categories.find(cat => cat.name === selectedCategory.name);
+        const initialCategory = categories.find(cat => cat.id === selectedCategory.id);
         const initialData = isKorean ? initialCategory.koData : initialCategory.jpData;
         setCategory(initialData);
         setPlace(initialData); // 초기화 시 선택된 카테고리의 데이터를 설정
     }, [categories, isKorean, selectedCategory]);
 
     useEffect(() => {
-        const updatedCategory = categories.find(cat => cat.name === selected);
+        const updatedCategory = categories.find(cat => cat.id === selected);
         const updatedData = isKorean ? updatedCategory.koData : updatedCategory.jpData;
         setCategory(updatedData);
         setPlace(updatedData);

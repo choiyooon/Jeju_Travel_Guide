@@ -4,8 +4,8 @@ import axios from "axios";
 import {useTranslation} from 'react-i18next';
 import koreaFlag from "../Resources/Images/korea_flag.png";
 import japanFlag from "../Resources/Images/japan_flag.png";
-import sun from "../Resources/Images/sun1.png";
-import moon from "../Resources/Images/moon1.png";
+import sun from "../Resources/Images/sun.png";
+import moon from "../Resources/Images/moon.png";
 
 import Weather from "./Weather";
 import "./Navbar.css";

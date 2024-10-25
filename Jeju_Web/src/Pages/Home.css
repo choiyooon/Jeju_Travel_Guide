@@ -130,39 +130,7 @@
 .categorySection {
     display: flex;
     justify-content: center; /* 가로로 중앙 정렬 */
-    flex-wrap: wrap; /* 필요할 경우 다음 줄로 넘어가도록 설정 */
-    gap: 20px; /* 카테고리 사이의 간격 설정 */
-    width: 100%; /* 부모 요소가 가로로 꽉 차도록 설정 */
 }
-.categoryImage {
-    margin-top: 20px;
-    width: 250px;
-    height: 250px;
-}
-.category {
-    display: inline-block;
-    width: 300px;
-    height: 300px;
-    border-style: none;
-    border-radius: 30px;
-    background-color: white;
-    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
-    margin: 20px;
-}
-
-.category:hover {
-    transition: 0.3s;
-    letter-spacing: 0px;
-    transform: scale(1.15);
-    box-shadow: 7px 15px 20px rgb(150, 150, 150);
-    cursor: pointer;
-}
-.category:active {
-    transform: scale(1.25);
-}
-
-
-
 
 
 .star-img{

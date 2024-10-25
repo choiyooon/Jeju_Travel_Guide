@@ -30,7 +30,7 @@ const resources = {
             activity: "액티비티 🪂",
             restaurant: "맛집 🍚",
             accommodation: "숙소 🏠",
-            attraction: "명소 🏔️",
+            attraction: "관광지 🏔️",
             initialize: "초기화",
             showAll: "모두 보기"
         }
